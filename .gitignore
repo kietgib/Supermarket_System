@@ -1,0 +1,67 @@
+#file build sinh ra tự động 
+bin/
+obj/
+build/
+dist/
+out/
+*.exe
+*.dll
+*.class
+*.o
+
+#thư viện
+node_modules/
+venv/
+.env/
+.venv/
+__pycache__/
+*.pyc
+
+#hệ điều hành
+.DS_Store
+Thumbs.db
+desktop.ini
+
+#IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+#file nhạy cảm
+.env
+.env.*
+config.json
+secrets.json
+*.key
+*.pem
+
+#log +temp files
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+
+#C# (visual studio )
+*.user
+*.aps
+*.ncb
+*.opendb
+*.VC.db
+*.pdb
+*.cache
+*.ilk
+
+# Visual Studio folders
+.vs/
+
+data/
+datasets/
+*.h5
+*.pth
+*.pt
+*.ckpt
+*.onnx

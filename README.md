@@ -78,9 +78,11 @@ SQLdata
 
 ## 🚀 Hướng dẫn Cài đặt
 
-1.  **Cấu hình Database:**
-    * Tạo Database tên là `SupermarketDB` trong SQL Server.
-    * Chạy script SQL để tạo các bảng `Employees`, `Customers`, `Products`, `Orders`, `OrderDetails`.
+1. ## 🗄️ Database Setup
+   * Để sử dụng cơ sở dữ liệu của dự án này, vui lòng thực hiện:
+   * Mở file `SupermarketDB.sql` đính kèm trong thư mục `SQLData`.
+   * Mở **SQL Server Management Studio**.
+   * Copy toàn bộ nội dung file và chạy lệnh **Execute** (F5).
 2.  **Thiết lập Kết nối:**
     * Mở file `DataAccessLayer.cs`.
     * Sửa đổi chuỗi `ConnStr` để khớp với Server của bạn:

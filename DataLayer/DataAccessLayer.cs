@@ -11,7 +11,7 @@ namespace SupermarketSystem.DataLayer
     public class DataAccessLayer
     {
 
-        string ConnStr = "Data Source=DESKTOP-GDJOGDK\\SQLEXPRESS;Initial Catalog=QuanLyBanHang;Integrated Security=True";
+        string ConnStr = "Data Source=DESKTOP-GDJOGDK\\SQLEXPRESS;Initial Catalog=SupermarketDB;Integrated Security=True";
         SqlConnection conn = null;
         SqlCommand comm = null;
         SqlDataAdapter da = null;

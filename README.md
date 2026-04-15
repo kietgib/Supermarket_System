@@ -88,6 +88,7 @@ SQLdata
     string ConnStr = "Data Source=YOUR_SERVER_NAME;Initial Catalog=SupermarketDB;Integrated Security=True";
     ```
 3.  **Chạy ứng dụng:** Nhấn `F5` trong Visual Studio để bắt đầu.
+4.  **Username và Password để login tạm thời:** username: admin, password: 123
 
 ---
 
@@ -98,3 +99,5 @@ SQLdata
 * **Chuyên ngành:** Công nghệ thông tin.
 
 ---
+
+Tình trạng hiện tại đã code xong tương tác GUI với các button trong Customer và 1 phần của Orderdetails, các nội dung khi thêm sửa sẽ ảnh hưởng đến bảng khác, ngoài ra các chức năng setting cũng đã hoàn chỉnh setting màu cho panel... 

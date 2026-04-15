@@ -23,5 +23,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             this.productsTableAdapter.Fill(this.supermarketDBDataSet.Products);
 
         }
+
+
     }
 }

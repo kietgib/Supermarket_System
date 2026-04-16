@@ -55,6 +55,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -72,7 +73,8 @@
             this.customerIDDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.phoneDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn});
+            this.addressDataGridViewTextBoxColumn,
+            this.Status});
             this.dgvCustomers.DataSource = this.customersBindingSource;
             this.dgvCustomers.Location = new System.Drawing.Point(370, 294);
             this.dgvCustomers.Name = "dgvCustomers";
@@ -352,6 +354,14 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 8;
+            this.Status.Name = "Status";
+            this.Status.Width = 150;
+            // 
             // CustomersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -402,5 +412,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

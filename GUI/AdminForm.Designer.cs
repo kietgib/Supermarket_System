@@ -75,8 +75,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.menuStripSystemAdminForm.SuspendLayout();
             this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripSystemAdminForm
@@ -110,7 +115,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem1});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 32);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -197,7 +202,7 @@
             this.toolStripSeparator4,
             this.selectAllToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 32);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(58, 29);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // undoToolStripMenuItem
@@ -263,7 +268,7 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 32);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
@@ -287,7 +292,7 @@
             this.toolStripSeparator10,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 32);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(65, 29);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // contentsToolStripMenuItem
@@ -327,7 +332,7 @@
             this.textColorToolStripMenuItem,
             this.textColorInLeftPanelToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(84, 32);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(84, 29);
             this.settingToolStripMenuItem.Text = "Setting";
             // 
             // leftPanelColorToolStripMenuItem
@@ -361,15 +366,17 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.LightPink;
+            this.panelMain.Controls.Add(this.panel2);
+            this.panelMain.Controls.Add(this.managementlists);
             this.panelMain.Controls.Add(this.OrderDetails);
+            this.panelMain.Controls.Add(this.Staff);
             this.panelMain.Controls.Add(this.Products);
             this.panelMain.Controls.Add(this.Order);
             this.panelMain.Controls.Add(this.Customer);
-            this.panelMain.Controls.Add(this.Staff);
-            this.panelMain.Controls.Add(this.managementlists);
-            this.panelMain.Location = new System.Drawing.Point(0, 33);
+            this.panelMain.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelMain.Location = new System.Drawing.Point(0, 36);
             this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(201, 531);
+            this.panelMain.Size = new System.Drawing.Size(300, 630);
             this.panelMain.TabIndex = 2;
             this.panelMain.Click += new System.EventHandler(this.panelMain_Click);
             this.panelMain.MouseEnter += new System.EventHandler(this.panelMain_MouseEnter);
@@ -377,82 +384,102 @@
             // 
             // OrderDetails
             // 
-            this.OrderDetails.AutoSize = true;
             this.OrderDetails.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrderDetails.Location = new System.Drawing.Point(43, 202);
+            this.OrderDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.OrderDetails.ImageKey = "orderdetails_icon.png";
+            this.OrderDetails.ImageList = this.imageList1;
+            this.OrderDetails.Location = new System.Drawing.Point(37, 584);
             this.OrderDetails.Margin = new System.Windows.Forms.Padding(10);
             this.OrderDetails.Name = "OrderDetails";
-            this.OrderDetails.Size = new System.Drawing.Size(124, 23);
+            this.OrderDetails.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.OrderDetails.Size = new System.Drawing.Size(245, 40);
             this.OrderDetails.TabIndex = 5;
             this.OrderDetails.Text = "Order Details";
+            this.OrderDetails.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.OrderDetails.Click += new System.EventHandler(this.OrderDetails_Click);
             // 
             // Products
             // 
-            this.Products.AutoSize = true;
             this.Products.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Products.Location = new System.Drawing.Point(43, 144);
+            this.Products.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Products.ImageKey = "products_icon.png";
+            this.Products.ImageList = this.imageList1;
+            this.Products.Location = new System.Drawing.Point(37, 504);
             this.Products.Margin = new System.Windows.Forms.Padding(10);
             this.Products.Name = "Products";
-            this.Products.Size = new System.Drawing.Size(87, 23);
+            this.Products.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.Products.Size = new System.Drawing.Size(209, 40);
             this.Products.TabIndex = 4;
             this.Products.Text = "Products";
+            this.Products.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Products.Click += new System.EventHandler(this.Products_Click);
             // 
             // Order
             // 
-            this.Order.AutoSize = true;
             this.Order.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Order.Location = new System.Drawing.Point(43, 173);
+            this.Order.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Order.ImageKey = "orders_icon.png";
+            this.Order.ImageList = this.imageList1;
+            this.Order.Location = new System.Drawing.Point(37, 544);
             this.Order.Margin = new System.Windows.Forms.Padding(10);
             this.Order.Name = "Order";
-            this.Order.Size = new System.Drawing.Size(60, 23);
+            this.Order.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.Order.Size = new System.Drawing.Size(183, 40);
             this.Order.TabIndex = 3;
             this.Order.Text = "Order";
+            this.Order.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Order.Click += new System.EventHandler(this.Order_Click);
             // 
             // Customer
             // 
-            this.Customer.AutoSize = true;
             this.Customer.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Customer.Location = new System.Drawing.Point(43, 116);
+            this.Customer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Customer.ImageKey = "customer_icon.png";
+            this.Customer.ImageList = this.imageList1;
+            this.Customer.Location = new System.Drawing.Point(37, 464);
             this.Customer.Margin = new System.Windows.Forms.Padding(10);
             this.Customer.Name = "Customer";
-            this.Customer.Size = new System.Drawing.Size(94, 23);
+            this.Customer.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.Customer.Size = new System.Drawing.Size(209, 40);
             this.Customer.TabIndex = 2;
             this.Customer.Text = "Customer";
+            this.Customer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Customer.Click += new System.EventHandler(this.Customer_Click);
             // 
             // Staff
             // 
-            this.Staff.AutoSize = true;
             this.Staff.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Staff.Location = new System.Drawing.Point(43, 88);
+            this.Staff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Staff.ImageIndex = 6;
+            this.Staff.ImageList = this.imageList1;
+            this.Staff.Location = new System.Drawing.Point(37, 424);
             this.Staff.Margin = new System.Windows.Forms.Padding(10);
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(49, 23);
+            this.Staff.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.Staff.Size = new System.Drawing.Size(162, 40);
             this.Staff.TabIndex = 1;
             this.Staff.Text = "Staff";
-            this.Staff.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Staff.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.Staff.Click += new System.EventHandler(this.Staff_Click);
             // 
             // managementlists
             // 
             this.managementlists.AutoSize = true;
-            this.managementlists.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.managementlists.Location = new System.Drawing.Point(12, 49);
+            this.managementlists.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.managementlists.Location = new System.Drawing.Point(25, 397);
             this.managementlists.Name = "managementlists";
-            this.managementlists.Size = new System.Drawing.Size(168, 23);
+            this.managementlists.Size = new System.Drawing.Size(176, 23);
             this.managementlists.TabIndex = 0;
             this.managementlists.Text = "Management Lists";
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(207, 33);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(300, 36);
             this.panel1.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(1404, 531);
+            this.panel1.Size = new System.Drawing.Size(1333, 630);
             this.panel1.TabIndex = 3;
             // 
             // contextMenuStrip1
@@ -461,11 +488,45 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "admin_icon.png");
+            this.imageList1.Images.SetKeyName(1, "customer_icon.png");
+            this.imageList1.Images.SetKeyName(2, "order_icon.png");
+            this.imageList1.Images.SetKeyName(3, "orderdetails_icon.png");
+            this.imageList1.Images.SetKeyName(4, "orders_icon.png");
+            this.imageList1.Images.SetKeyName(5, "products_icon.png");
+            this.imageList1.Images.SetKeyName(6, "staff_icon.png");
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Padding = new System.Windows.Forms.Padding(5);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 250);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(25, 50);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(250, 250);
+            this.panel2.TabIndex = 6;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1633, 561);
+            this.ClientSize = new System.Drawing.Size(1633, 666);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.menuStripSystemAdminForm);
@@ -477,6 +538,8 @@
             this.menuStripSystemAdminForm.PerformLayout();
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,5 +591,8 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

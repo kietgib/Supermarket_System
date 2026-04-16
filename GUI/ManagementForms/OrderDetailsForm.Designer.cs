@@ -61,6 +61,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -80,7 +81,8 @@
             this.productIDDataGridViewTextBoxColumn,
             this.unitPriceDataGridViewTextBoxColumn,
             this.quantityDataGridViewTextBoxColumn,
-            this.totalAmountDataGridViewTextBoxColumn});
+            this.totalAmountDataGridViewTextBoxColumn,
+            this.Status});
             this.dgvOrderDetails.DataSource = this.orderDetailsBindingSource;
             this.dgvOrderDetails.Location = new System.Drawing.Point(377, 323);
             this.dgvOrderDetails.Margin = new System.Windows.Forms.Padding(10);
@@ -421,6 +423,14 @@
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 8;
+            this.Status.Name = "Status";
+            this.Status.Width = 150;
+            // 
             // OrderDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -477,5 +487,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalAmountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

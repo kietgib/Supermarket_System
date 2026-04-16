@@ -32,12 +32,10 @@ namespace SupermarketSystem
             AddMenuEffect(Products);
             AddMenuEffect(OrderDetails);
 
-            //kích thước panel trái
-            panelMain.Dock = DockStyle.Left;
-            panelMain.Width = 200;
-
             //kích thước panel phải
             panel1.Dock = DockStyle.Fill;
+
+            
             
         }
 

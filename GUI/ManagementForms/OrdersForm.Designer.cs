@@ -33,7 +33,6 @@
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supermarketDBDataSet = new SupermarketSystem.SupermarketDBDataSet();
             this.ordersTableAdapter = new SupermarketSystem.SupermarketDBDataSetTableAdapters.OrdersTableAdapter();
@@ -55,6 +54,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -72,7 +72,7 @@
             this.orderIDDataGridViewTextBoxColumn,
             this.customerIDDataGridViewTextBoxColumn,
             this.orderDateDataGridViewTextBoxColumn,
-            this.employeeIDDataGridViewTextBoxColumn});
+            this.Status});
             this.dataGridView1.DataSource = this.ordersBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(377, 301);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
@@ -105,14 +105,6 @@
             this.orderDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.orderDateDataGridViewTextBoxColumn.Name = "orderDateDataGridViewTextBoxColumn";
             this.orderDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // employeeIDDataGridViewTextBoxColumn
-            // 
-            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-            this.employeeIDDataGridViewTextBoxColumn.Width = 150;
             // 
             // ordersBindingSource
             // 
@@ -347,6 +339,14 @@
             this.button10.Text = "SAVE";
             this.button10.UseVisualStyleBackColor = true;
             // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 8;
+            this.Status.Name = "Status";
+            this.Status.Width = 150;
+            // 
             // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -397,5 +397,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn customerIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

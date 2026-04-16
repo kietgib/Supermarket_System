@@ -158,15 +158,34 @@ namespace SupermarketSystem.GUI.ManagementForms
         }
 
         private BussinessLogicLayer.Entities.OrderDetail BuildOrderDetailFromInputs()
-        {
+{
+            if (string.IsNullOrWhiteSpace(txtOrderDetailID.Text) ||
+                string.IsNullOrWhiteSpace(txtOrderID.Text) ||
+                string.IsNullOrWhiteSpace(txtProductID.Text))
+            {
+                throw new Exception("Vui lòng nhập đầy đủ thông tin!");
+            }
+
+            if (!decimal.TryParse(txtUnitprice.Text, out decimal unitPrice))
+            {
+                throw new Exception("Unit Price không hợp lệ!");
+            }
+
+            if (!int.TryParse(txtQuantity.Text, out int quantity))
+            {
+                throw new Exception("Quantity không hợp lệ!");
+            }
+
+            decimal totalAmount = unitPrice * quantity; // tự tính lại cho chuẩn
+
             return new BussinessLogicLayer.Entities.OrderDetail
             {
-                OrderDetailID = txtOrderDetailID.Text,
-                OrderID = txtOrderID.Text,
-                ProductID = txtProductID.Text,
-                UnitPrice = (double)(decimal.TryParse(txtUnitprice.Text, out decimal unitPrice) ? unitPrice : 0),
-                Quantity = int.TryParse(txtQuantity.Text, out int quantity) ? quantity : 0,
-                totalAmount = decimal.TryParse(txtTotalAmount.Text, out decimal totalAmount) ? totalAmount : 0
+                OrderDetailID = txtOrderDetailID.Text.Trim(),
+                OrderID = txtOrderID.Text.Trim(),
+                ProductID = txtProductID.Text.Trim(),
+                UnitPrice = (double)unitPrice,
+                Quantity = quantity,
+                totalAmount = totalAmount
             };
         }
 

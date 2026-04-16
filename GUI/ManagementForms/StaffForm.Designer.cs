@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.employeesBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.supermarketDBDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supermarketDBDataSet = new SupermarketSystem.SupermarketDBDataSet();
@@ -43,10 +38,16 @@
             this.employeesTableAdapter = new SupermarketSystem.SupermarketDBDataSetTableAdapters.EmployeesTableAdapter();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeID = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtPosition = new System.Windows.Forms.TextBox();
+            this.dgvStaff = new System.Windows.Forms.DataGridView();
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.positionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,12 +55,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -67,59 +67,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.employeeIDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.phoneDataGridViewTextBoxColumn,
-            this.positionDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.employeesBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(371, 301);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(10);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1092, 652);
-            this.dataGridView1.TabIndex = 7;
-            // 
-            // employeeIDDataGridViewTextBoxColumn
-            // 
-            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-            this.employeeIDDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.phoneDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // positionDataGridViewTextBoxColumn
-            // 
-            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
-            this.positionDataGridViewTextBoxColumn.HeaderText = "Position";
-            this.positionDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
-            this.positionDataGridViewTextBoxColumn.Width = 150;
             // 
             // employeesBindingSource1
             // 
@@ -161,7 +112,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.27622F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.dgvStaff, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
@@ -178,10 +129,10 @@
             // 
             // flowLayoutPanel3
             // 
-            this.flowLayoutPanel3.Controls.Add(this.textBox5);
-            this.flowLayoutPanel3.Controls.Add(this.textBox6);
-            this.flowLayoutPanel3.Controls.Add(this.textBox7);
-            this.flowLayoutPanel3.Controls.Add(this.textBox8);
+            this.flowLayoutPanel3.Controls.Add(this.txtEmployeeID);
+            this.flowLayoutPanel3.Controls.Add(this.txtName);
+            this.flowLayoutPanel3.Controls.Add(this.txtPhone);
+            this.flowLayoutPanel3.Controls.Add(this.txtPosition);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(371, 87);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(10);
@@ -189,37 +140,97 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1092, 194);
             this.flowLayoutPanel3.TabIndex = 18;
             // 
-            // textBox5
+            // txtEmployeeID
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.Location = new System.Drawing.Point(3, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(600, 26);
-            this.textBox5.TabIndex = 4;
+            this.txtEmployeeID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmployeeID.Location = new System.Drawing.Point(3, 3);
+            this.txtEmployeeID.Name = "txtEmployeeID";
+            this.txtEmployeeID.Size = new System.Drawing.Size(600, 26);
+            this.txtEmployeeID.TabIndex = 4;
             // 
-            // textBox6
+            // txtName
             // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox6.Location = new System.Drawing.Point(3, 35);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(600, 26);
-            this.textBox6.TabIndex = 5;
+            this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtName.Location = new System.Drawing.Point(3, 35);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(600, 26);
+            this.txtName.TabIndex = 5;
             // 
-            // textBox7
+            // txtPhone
             // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox7.Location = new System.Drawing.Point(3, 67);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(600, 26);
-            this.textBox7.TabIndex = 6;
+            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhone.Location = new System.Drawing.Point(3, 67);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(600, 26);
+            this.txtPhone.TabIndex = 6;
             // 
-            // textBox8
+            // txtPosition
             // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.Location = new System.Drawing.Point(3, 99);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(600, 26);
-            this.textBox8.TabIndex = 7;
+            this.txtPosition.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPosition.Location = new System.Drawing.Point(3, 99);
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Size = new System.Drawing.Size(600, 26);
+            this.txtPosition.TabIndex = 7;
+            // 
+            // dgvStaff
+            // 
+            this.dgvStaff.AutoGenerateColumns = false;
+            this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.employeeIDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.phoneDataGridViewTextBoxColumn,
+            this.positionDataGridViewTextBoxColumn,
+            this.Status});
+            this.dgvStaff.DataSource = this.employeesBindingSource1;
+            this.dgvStaff.Location = new System.Drawing.Point(371, 301);
+            this.dgvStaff.Margin = new System.Windows.Forms.Padding(10);
+            this.dgvStaff.Name = "dgvStaff";
+            this.dgvStaff.RowHeadersWidth = 62;
+            this.dgvStaff.RowTemplate.Height = 28;
+            this.dgvStaff.Size = new System.Drawing.Size(1092, 652);
+            this.dgvStaff.TabIndex = 7;
+            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick_1);
+            // 
+            // employeeIDDataGridViewTextBoxColumn
+            // 
+            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            this.employeeIDDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            this.phoneDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // positionDataGridViewTextBoxColumn
+            // 
+            this.positionDataGridViewTextBoxColumn.DataPropertyName = "Position";
+            this.positionDataGridViewTextBoxColumn.HeaderText = "Position";
+            this.positionDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.positionDataGridViewTextBoxColumn.Name = "positionDataGridViewTextBoxColumn";
+            this.positionDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 8;
+            this.Status.Name = "Status";
+            this.Status.Width = 150;
             // 
             // label6
             // 
@@ -300,11 +311,11 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Controls.Add(this.button6);
-            this.flowLayoutPanel2.Controls.Add(this.button7);
-            this.flowLayoutPanel2.Controls.Add(this.button8);
-            this.flowLayoutPanel2.Controls.Add(this.button9);
-            this.flowLayoutPanel2.Controls.Add(this.button10);
+            this.flowLayoutPanel2.Controls.Add(this.btnAdd);
+            this.flowLayoutPanel2.Controls.Add(this.btnEdit);
+            this.flowLayoutPanel2.Controls.Add(this.btnCancel);
+            this.flowLayoutPanel2.Controls.Add(this.btnDelete);
+            this.flowLayoutPanel2.Controls.Add(this.btnSave);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(1476, 80);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -313,65 +324,70 @@
             this.flowLayoutPanel2.TabIndex = 17;
             this.flowLayoutPanel2.WrapContents = false;
             // 
-            // button6
+            // btnAdd
             // 
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(30, 60);
-            this.button6.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(100, 73);
-            this.button6.TabIndex = 10;
-            this.button6.Text = "ADD";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(30, 60);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(100, 73);
+            this.btnAdd.TabIndex = 10;
+            this.btnAdd.Text = "ADD";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
-            // button7
+            // btnEdit
             // 
-            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button7.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(160, 60);
-            this.button7.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(100, 73);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "EDIT";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEdit.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(160, 60);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(100, 73);
+            this.btnEdit.TabIndex = 11;
+            this.btnEdit.Text = "EDIT";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click_1);
             // 
-            // button8
+            // btnCancel
             // 
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(290, 60);
-            this.button8.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(100, 73);
-            this.button8.TabIndex = 13;
-            this.button8.Text = "CANCEL";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(290, 60);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(100, 73);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
             // 
-            // button9
+            // btnDelete
             // 
-            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button9.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(420, 60);
-            this.button9.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(100, 73);
-            this.button9.TabIndex = 14;
-            this.button9.Text = "DELETE";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(420, 60);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(100, 73);
+            this.btnDelete.TabIndex = 14;
+            this.btnDelete.Text = "DELETE";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click_1);
             // 
-            // button10
+            // btnSave
             // 
-            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button10.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.Location = new System.Drawing.Point(550, 60);
-            this.button10.Margin = new System.Windows.Forms.Padding(20, 50, 20, 50);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(100, 73);
-            this.button10.TabIndex = 12;
-            this.button10.Text = "SAVE";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(550, 60);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(20, 50, 20, 50);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(100, 73);
+            this.btnSave.TabIndex = 12;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // StaffForm
             // 
@@ -382,7 +398,6 @@
             this.Name = "StaffForm";
             this.Text = "StaffForm";
             this.Load += new System.EventHandler(this.StaffForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).EndInit();
@@ -392,6 +407,7 @@
             this.tableLayoutPanel1.PerformLayout();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.flowLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -399,24 +415,19 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource supermarketDBDataSetBindingSource;
         private SupermarketDBDataSet supermarketDBDataSet;
         private System.Windows.Forms.BindingSource customersBindingSource;
         private SupermarketDBDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
         private System.Windows.Forms.BindingSource employeesBindingSource;
         private SupermarketDBDataSetTableAdapters.EmployeesTableAdapter employeesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn positionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource employeesBindingSource1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtEmployeeID;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label7;
@@ -424,10 +435,16 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView dgvStaff;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn positionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

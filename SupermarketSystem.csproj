@@ -181,6 +181,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\admin_icon.png" />
     <Content Include="Images\porsche_911_turbo_03_by_uptownzombie31_dj84k3y.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

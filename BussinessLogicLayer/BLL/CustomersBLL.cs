@@ -19,7 +19,7 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         public override bool Add(Customers entity, ref string error)
         {
             // N' ' cho tiếng Việt có dấu ở cột Name và Address
-            string sql = $"INSERT INTO Customers VALUES ('{entity.CustomerID}', N'{entity.Name}', '{entity.Phone}', N'{entity.Address}')";
+            string sql = $"INSERT INTO Customers VALUES ('{entity.CustomerID}', N'{entity.Name}', '{entity.Phone}', N'{entity.Address}', 1)";
             return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
         }
 

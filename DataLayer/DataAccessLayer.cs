@@ -32,13 +32,45 @@ namespace SupermarketSystem.DataLayer
             da.Fill(ds);
             return ds;
         }
-        public bool MyExecuteNonQuery(string strSQL, CommandType ct, ref string error)
+        public bool MyExecuteNonQuery(string strSQL, CommandType ct, ref string error, SqlParameter[] parameters = null)
         {
             bool f = false;
             if (conn.State == ConnectionState.Open)
                 conn.Close();
             conn.Open();
+            comm.Parameters.Clear(); // QUAN TRỌNG: Xóa tham số cũ
             comm.CommandText = strSQL;
+            comm.CommandType = ct;
+
+            // Thêm các tham số mới nếu có
+            if (parameters != null)
+            {
+                comm.Parameters.AddRange(parameters);
+            }
+
+            try
+            {
+                comm.ExecuteNonQuery();
+                f = true;
+            }
+            catch (SqlException ex)
+            {
+                error = ex.Message;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return f;
+        }
+
+        internal bool MyExecuteNonQuery(string sql, CommandType ct, ref string error)
+        {
+            bool f = false;
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
+            conn.Open();
+            comm.CommandText = sql;
             comm.CommandType = ct;
             try
             {

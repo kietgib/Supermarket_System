@@ -16,14 +16,14 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
     {
         public override DataSet GetAll()
         {
-            // Khớp với hàm ExecuteQueryDataSet trong DAL của bạn
-            string sql = "SELECT * FROM Employees";
+            // Chỉ lấy những người đang hoạt động (Status = 1)
+            string sql = "SELECT * FROM Employees WHERE Status = 1";
             return dal.ExecuteQueryDataSet(sql, CommandType.Text);
         }
 
         public override bool Add(Staff entity, ref string error)
         {
-            string sql = $"INSERT INTO Employees VALUES ('{entity.EmployeeID}', N'{entity.Name}', '{entity.Phone}', N'{entity.Position}')";
+            string sql = $"INSERT INTO Employees VALUES ('{entity.EmployeeID}', N'{entity.Name}', '{entity.Phone}', N'{entity.Position}',1 )";
             return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
         }
 
@@ -33,11 +33,31 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
             return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
         }
 
+
         public override bool Delete(object id, ref string error)
         {
-            string sql = $"DELETE FROM Employees WHERE EmployeeID = '{id}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            if (id == null || string.IsNullOrWhiteSpace(id.ToString()))
+            {
+                error = "ID không hợp lệ";
+                return false;
+            }
+
+            // Chuỗi SQL cập nhật Status cho cả 3 bảng liên quan
+            // Giả sử bảng Orders và OrderDetails cũng có cột Status
+            string sql = @"
+
+        -- 3. Cuối cùng mới cập nhật trạng thái của chính nhân viên đó
+            UPDATE Employees SET Status = 0 WHERE EmployeeID = @id";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@id", id)
+            };
+
+            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error, parameters);
         }
+
+
         // Logic riêng của Employee
         //private bool IsEmployeeIDExists(string id)
         //{

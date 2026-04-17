@@ -33,6 +33,7 @@
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.supermarketDBDataSet = new SupermarketSystem.SupermarketDBDataSet();
             this.ordersTableAdapter = new SupermarketSystem.SupermarketDBDataSetTableAdapters.OrdersTableAdapter();
@@ -54,7 +55,6 @@
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -81,6 +81,7 @@
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(988, 652);
             this.dataGridView1.TabIndex = 31;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // orderIDDataGridViewTextBoxColumn
             // 
@@ -105,6 +106,14 @@
             this.orderDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.orderDateDataGridViewTextBoxColumn.Name = "orderDateDataGridViewTextBoxColumn";
             this.orderDateDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 8;
+            this.Status.Name = "Status";
+            this.Status.Width = 150;
             // 
             // ordersBindingSource
             // 
@@ -261,7 +270,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(200, 30);
             this.label10.TabIndex = 3;
-            this.label10.Text = "EmployeeID";
+            this.label10.Text = "Status";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // flowLayoutPanel2
@@ -290,6 +299,7 @@
             this.button6.TabIndex = 10;
             this.button6.Text = "ADD";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             // 
             // button7
             // 
@@ -302,6 +312,7 @@
             this.button7.TabIndex = 11;
             this.button7.Text = "EDIT";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             // 
             // button8
             // 
@@ -314,6 +325,7 @@
             this.button8.TabIndex = 13;
             this.button8.Text = "CANCEL";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Visible = false;
             // 
             // button9
             // 
@@ -326,6 +338,7 @@
             this.button9.TabIndex = 14;
             this.button9.Text = "DELETE";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Visible = false;
             // 
             // button10
             // 
@@ -338,14 +351,7 @@
             this.button10.TabIndex = 12;
             this.button10.Text = "SAVE";
             this.button10.UseVisualStyleBackColor = true;
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 8;
-            this.Status.Name = "Status";
-            this.Status.Width = 150;
+            this.button10.Visible = false;
             // 
             // OrdersForm
             // 

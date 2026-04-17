@@ -196,12 +196,13 @@ namespace SupermarketSystem.GUI.ManagementForms
                 try
                 {
                     DataGridViewRow row = dgvOrderDetails.Rows[e.RowIndex];
-                    txtOrderDetailID.Text = row.Cells["OrderDetailID"].Value.ToString();
-                    txtOrderID.Text = row.Cells["OrderID"].Value.ToString();
-                    txtProductID.Text = row.Cells["ProductID"].Value.ToString();
-                    txtUnitprice.Text = row.Cells["UnitPrice"].Value.ToString();
-                    txtQuantity.Text = row.Cells["Quantity"].Value.ToString();
-                    txtTotalAmount.Text = row.Cells["TotalAmount"].Value.ToString();
+                    txtOrderDetailID.Text = row.Cells[0].Value?.ToString();
+                    txtOrderID.Text = row.Cells[1].Value?.ToString();
+                    txtProductID.Text = row.Cells[2].Value?.ToString();
+                    txtUnitprice.Text = row.Cells[3].Value?.ToString();
+                    txtQuantity.Text = row.Cells[4].Value?.ToString();
+                    txtTotalAmount.Text = row.Cells[5].Value?.ToString();
+                    textBox1.Text = row.Cells[6].Value?.ToString(); 
 
                     btnEdit.Enabled = true; // Cho phép sửa khi đã chọn một dòng
                     btnDelete.Enabled = true; // Cho phép xóa khi đã chọn một dòng

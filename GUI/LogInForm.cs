@@ -36,7 +36,7 @@ namespace SupermarketSystem
             }
             else
             {
-                MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Enter the Usernam and Password");
             } 
         }
 

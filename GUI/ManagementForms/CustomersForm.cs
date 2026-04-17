@@ -172,6 +172,7 @@ namespace SupermarketSystem.GUI.ManagementForms
                     txtName.Text = row.Cells[1].Value?.ToString();
                     txtPhone.Text = row.Cells[2].Value?.ToString();
                     txtAddress.Text = row.Cells[3].Value?.ToString();
+                    txtStatus.Text = row.Cells[4].Value?.ToString();
 
                     btnEdit.Enabled = true;
                     btnDelete.Enabled = true;

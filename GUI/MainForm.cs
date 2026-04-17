@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SupermarketSystem.GUI.ManagementForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -25,16 +26,20 @@ namespace SupermarketSystem
             this.WindowState = FormWindowState.Maximized;
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            this.BackgroundImage = Properties.Resources.BackgroundHome;
+
+            this.BackgroundImage = Properties.Resources._9784291;
             this.BackgroundImageLayout = ImageLayout.Stretch;
-            // Stretch 
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            LogInForm loginForm = new LogInForm();
+            loginForm.Show();
+        }
         private void logInToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LogInForm logInForm = new LogInForm();
-            logInForm.StartPosition = FormStartPosition.CenterParent; // thêm dòng này
-            logInForm.ShowDialog(this); // truyền this
+            logInForm.Show();
 
             if (bIsLoggedIn)
             {

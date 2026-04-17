@@ -122,7 +122,7 @@
             this.panel1.Controls.Add(this.Password);
             this.panel1.Controls.Add(this.Username);
             this.panel1.Font = new System.Drawing.Font("Cambria", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(45, 29);
+            this.panel1.Location = new System.Drawing.Point(47, 39);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(704, 374);
             this.panel1.TabIndex = 7;
@@ -143,7 +143,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "LogInForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);

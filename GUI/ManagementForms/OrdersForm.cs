@@ -23,5 +23,25 @@ namespace SupermarketSystem.GUI.ManagementForms
             this.ordersTableAdapter.Fill(this.supermarketDBDataSet.Orders);
 
         }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                    textBox5.Text = row.Cells[0].Value?.ToString();
+                    textBox6.Text = row.Cells[1].Value?.ToString();
+                    textBox7.Text = row.Cells[2].Value?.ToString();
+                    textBox8.Text = row.Cells[3].Value?.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi nạp dữ liệu" + ex.Message);
+                }
+            }    
+        }
     }
 }

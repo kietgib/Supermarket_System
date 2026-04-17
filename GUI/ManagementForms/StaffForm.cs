@@ -39,6 +39,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtName.Enabled = isEditing;
             txtPhone.Enabled = isEditing;
             txtPosition.Enabled = isEditing;
+            txtStatus.Enabled = isEditing;
 
             // Các nút bấm
             btnSave.Enabled = isEditing;
@@ -63,6 +64,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtName.Clear();
             txtPhone.Clear();
             txtPosition.Clear();
+            txtStatus.Clear();
 
         }
 
@@ -80,6 +82,7 @@ namespace SupermarketSystem.GUI.ManagementForms
                     txtName.Text = row.Cells[1].Value?.ToString();
                     txtPhone.Text = row.Cells[2].Value?.ToString();
                     txtPosition.Text = row.Cells[3].Value?.ToString();
+                    txtStatus.Text = row.Cells[4].Value?.ToString();
 
                     btnEdit.Enabled = true;
                     btnDelete.Enabled = true;
@@ -97,10 +100,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             SetState(true); // Bật các TextBox lên để nhập dữ liệu mới  
 
             // Xóa trắng các TextBox để nhập dữ liệu mới
-            txtEmployeeID.Clear();
-            txtName.Clear();
-            txtPhone.Clear();
-            txtPosition.Clear();
+            ClearInputs();
             // Khóa ô ID lại vì thường ID là khóa chính, không được sửa
             txtEmployeeID.Focus();
         }
@@ -154,7 +154,8 @@ namespace SupermarketSystem.GUI.ManagementForms
                 txtEmployeeID.Text,
                 txtName.Text,
                 txtPhone.Text,
-                txtPosition.Text
+                txtPosition.Text,
+                txtStatus.Text == "1" ? 1 : 0 // Giả sử Status chỉ có 2 giá trị: 1 (active) và 0 (inactive)
             );
 
             // 2. Gọi BLL xử lý

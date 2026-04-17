@@ -51,19 +51,20 @@
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(236, 34);
             this.logInToolStripMenuItem.Text = "Log In ";
             this.logInToolStripMenuItem.Click += new System.EventHandler(this.logInToolStripMenuItem_Click);
             // 
             // exitAltXToolStripMenuItem
             // 
             this.exitAltXToolStripMenuItem.Name = "exitAltXToolStripMenuItem";
-            this.exitAltXToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.exitAltXToolStripMenuItem.Size = new System.Drawing.Size(236, 34);
             this.exitAltXToolStripMenuItem.Text = "Exit         Alt +X";
             this.exitAltXToolStripMenuItem.Click += new System.EventHandler(this.exitAltXToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackgroundImage = global::SupermarketSystem.Properties.Resources._9784291;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1});
@@ -77,11 +78,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.toolStrip1);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

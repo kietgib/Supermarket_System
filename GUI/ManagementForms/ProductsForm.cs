@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SupermarketSystem.BussinessLogicLayer.BLL;
+using System;
 using System.Windows.Forms;
-using System.Xml.Linq;
-using SupermarketSystem.BussinessLogicLayer.BLL;
-using SupermarketSystem.BussinessLogicLayer.Entities;
+using SupermarketSystem;
 
 namespace SupermarketSystem.GUI.ManagementForms
 {
@@ -20,28 +12,36 @@ namespace SupermarketSystem.GUI.ManagementForms
             InitializeComponent();
         }
 
+        ProductBLL bll = new ProductBLL();
+        bool isAddMode = false;
+
+        // ================= LOAD =================
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'supermarketDBDataSet.Products' table. You can move, or remove it, as needed.
-            this.productsTableAdapter.Fill(this.supermarketDBDataSet.Products);
+            // ❌ XÓA dòng TableAdapter
+            // this.productsTableAdapter.Fill(this.supermarketDBDataSet.Products);
 
+            LoadData();
+            SetState(false);
         }
 
-        ProductBLL bll = new ProductBLL();
-        bool isAddMode = false; 
+        // ================= LOAD DATA =================
+        private void LoadData()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = bll.GetAll(); // EF -> List<>
+        }
 
-        //hàm tắt mở control
-
+        // ================= STATE =================
         private void SetState(bool isEditing)
         {
-            txtCategoryID.Enabled = isEditing && isAddMode; //chỉ cho nhập ID khi thêm mới 
+            txtProductID.Enabled = isEditing && isAddMode;
+            txtCategoryID.Enabled = isEditing;
             txtName.Enabled = isEditing;
             txtPrice.Enabled = isEditing;
-            txtProductID.Enabled = isEditing;
-            txtStatus.Enabled = isEditing;
             txtStock.Enabled = isEditing;
+            txtStatus.Enabled = isEditing;
 
-            //Các nút bấm 
             btnSave.Enabled = isEditing;
             btnCancel.Enabled = isEditing;
 
@@ -50,15 +50,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             btnDelete.Enabled = !isEditing;
         }
 
-        //hàm nạp dữ liệu lên gridview
-        private void LoadData()
-        {
-            string error = "";
-            // Vì BLL trả về DataSet nên ta lấy Table[0]
-            dataGridView1.DataSource = bll.GetAll().Tables[0];
-        }
-
-        //hàm clear input
+        // ================= CLEAR =================
         private void ClearInputs()
         {
             txtProductID.Clear();
@@ -69,113 +61,146 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtStatus.Clear();
         }
 
+        // ================= GRID CLICK =================
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra nếu click vào dòng hợp lệ
-            if (e.RowIndex >= 0)
+            if (e.RowIndex < 0) return;
+
+            try
             {
-                try
-                {
-                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                var row = dataGridView1.Rows[e.RowIndex];
 
-                    // Cách 1: Dùng Index (Số thứ tự cột) - An toàn nhất
-                    txtProductID.Text = row.Cells[0].Value?.ToString();
-                    txtCategoryID.Text = row.Cells[1].Value?.ToString();
-                    txtName.Text = row.Cells[2].Value?.ToString();
-                    txtPrice.Text = row.Cells[3].Value?.ToString();
-                    txtStock.Text = row.Cells[4].Value?.ToString();
-                    txtStatus.Text = row.Cells[5].Value?.ToString();
+                txtProductID.Text = row.Cells["ProductID"].Value?.ToString();
+                txtCategoryID.Text = row.Cells["CategoryID"].Value?.ToString();
+                txtName.Text = row.Cells["Name"].Value?.ToString();
+                txtPrice.Text = row.Cells["Price"].Value?.ToString();
+                txtStock.Text = row.Cells["Stock"].Value?.ToString();
+                txtStatus.Text = row.Cells["Status"].Value?.ToString();
 
-                    btnEdit.Enabled = true;
-                    btnDelete.Enabled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi nạp dữ liệu: " + ex.Message);
-                }
+                btnEdit.Enabled = true;
+                btnDelete.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
+        // ================= ADD =================
         private void btnAdd_Click(object sender, EventArgs e)
         {
             isAddMode = true;
-            SetState(true); // Bật các TextBox lên để nhập dữ liệu mới  
-            ClearInputs(); // Xóa trắng các TextBox để nhập dữ liệu mới
-
-            txtProductID.Focus(); // Đặt con trỏ vào TextBox đầu tiên để nhập
+            SetState(true);
+            ClearInputs();
+            txtProductID.Focus();
         }
 
+        // ================= EDIT =================
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtProductID.Text))
             {
-                MessageBox.Show("Vui lòng chọn một sản phẩm để sửa.");
+                MessageBox.Show("Chọn sản phẩm cần sửa!");
                 return;
             }
-            isAddMode = false; // Chuyển sang chế độ Sửa
-            SetState(true); // Bật các TextBox lên để chỉnh sửa dữ liệu
 
+            isAddMode = false;
+            SetState(true);
+            txtProductID.Enabled = false;
         }
 
+        // ================= CANCEL =================
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            SetState(false); // Tắt các TextBox, bật lại các nút bấm
+            SetState(false);
         }
 
+        // ================= DELETE =================
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string productId = txtProductID.Text;
-            if (string.IsNullOrEmpty(productId))
+            string id = txtProductID.Text;
+
+            if (string.IsNullOrEmpty(id))
             {
-                MessageBox.Show("Vui lòng chọn một sản phẩm để xóa.");
+                MessageBox.Show("Chọn sản phẩm cần xóa!");
                 return;
             }
-            DialogResult traloi;
-            traloi = MessageBox.Show("Bạn có muốn xóa sản phẩm này không?", "Xóa",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-            if (traloi == DialogResult.OK)
+
+            if (MessageBox.Show("Xóa sản phẩm?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                string errror = "";
-                if (bll.Delete(productId, ref errror))
+                string error = "";
+
+                if (bll.Delete(id, ref error))
                 {
-                    MessageBox.Show("Xóa sản phẩm thành công.");
-                    LoadData(); // Tải lại dữ liệu sau khi xóa
-                    ClearInputs(); // Xóa trắng các TextBox sau khi xóa
+                    MessageBox.Show("Xóa thành công!");
+                    LoadData();
+                    ClearInputs();
                 }
                 else
                 {
-                    MessageBox.Show("Xóa sản phẩm thất bại. Lỗi: " + errror);
+                    MessageBox.Show("Lỗi: " + error);
                 }
             }
         }
 
+        // ================= SAVE =================
         private void btnSave_Click(object sender, EventArgs e)
         {
             string error = "";
-            Product product = new Product
+
+            try
             {
-                ProductID = txtProductID.Text,
-                CategoryID = txtCategoryID.Text,
-                Name = txtName.Text,
-                Price = txtPrice.Text,
-                Stock = txtStock.Text,
-                Status = txtStatus.Text
+                var product = BuildProduct();
+
+                bool success = isAddMode
+                    ? bll.Add(product, ref error)
+                    : bll.Update(product, ref error);
+
+                if (success)
+                {
+                    MessageBox.Show("Lưu thành công!");
+                    LoadData();
+                    ClearInputs();
+                    SetState(false);
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi: " + error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // ================= BUILD ENTITY =================
+        private Product BuildProduct()
+        {
+            if (string.IsNullOrWhiteSpace(txtProductID.Text) ||
+                string.IsNullOrWhiteSpace(txtName.Text))
+            {
+                throw new Exception("Nhập thiếu dữ liệu!");
+            }
+
+            if (!decimal.TryParse(txtPrice.Text, out decimal price))
+                throw new Exception("Price sai!");
+
+            if (!int.TryParse(txtStock.Text, out int stock))
+                throw new Exception("Stock sai!");
+
+            if (!int.TryParse(txtStatus.Text, out int status))
+                throw new Exception("Status phải là 0 hoặc 1!");
+
+            return new Product
+            {
+                ProductID = txtProductID.Text.Trim(),
+                CategoryID = txtCategoryID.Text.Trim(),
+                Name = txtName.Text.Trim(),
+                Price = price,
+                Stock = stock,
+                Status = status
             };
-
-            //gọi BLL để xử lí 
-            bool success = isAddMode ? bll.Add(product, ref error) : bll.Update(product, ref error);
-
-            if (success)
-            {
-                MessageBox.Show(isAddMode ? "Thêm sản phẩm thành công." : "Cập nhật sản phẩm thành công.");
-                LoadData(); // Tải lại dữ liệu sau khi thêm/sửa
-                ClearInputs(); // Xóa trắng các TextBox sau khi lưu
-                SetState(false); // Tắt các TextBox, bật lại các nút bấm
-            }
-            else
-            {
-                MessageBox.Show( "Lỗi: " + error);
-            }
         }
     }
 }

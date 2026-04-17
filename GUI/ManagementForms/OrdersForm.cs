@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SupermarketSystem.BussinessLogicLayer.BLL;
+using SupermarketSystem;
+using System;
 using System.Windows.Forms;
 
 namespace SupermarketSystem.GUI.ManagementForms
@@ -17,13 +12,22 @@ namespace SupermarketSystem.GUI.ManagementForms
             InitializeComponent();
         }
 
+        OrderBLL bll = new OrderBLL();
+
+        // ================= LOAD =================
         private void OrdersForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'supermarketDBDataSet.Orders' table. You can move, or remove it, as needed.
-            this.ordersTableAdapter.Fill(this.supermarketDBDataSet.Orders);
-
+            LoadData();
         }
 
+        // ================= LOAD DATA =================
+        private void LoadData()
+        {
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = bll.GetAll();
+        }
+
+        // ================= CLICK GRID =================
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -32,16 +36,15 @@ namespace SupermarketSystem.GUI.ManagementForms
                 {
                     DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-                    textBox5.Text = row.Cells[0].Value?.ToString();
-                    textBox6.Text = row.Cells[1].Value?.ToString();
-                    textBox7.Text = row.Cells[2].Value?.ToString();
-                    textBox8.Text = row.Cells[3].Value?.ToString();
+                    textBox5.Text = row.Cells["OrderID"].Value?.ToString();
+                    textBox6.Text = row.Cells["CustomerID"].Value?.ToString();
+                    textBox8.Text = Convert.ToDateTime(row.Cells["OrderDate"].Value).ToString("yyyy-MM-dd");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi nạp dữ liệu" + ex.Message);
+                    MessageBox.Show("Lỗi nạp dữ liệu: " + ex.Message);
                 }
-            }    
+            }
         }
     }
 }

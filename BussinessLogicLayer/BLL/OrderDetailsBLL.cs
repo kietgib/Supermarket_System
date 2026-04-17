@@ -1,52 +1,129 @@
-﻿using SupermarketSystem.BussinessLogicLayer.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SupermarketSystem;
 
 namespace SupermarketSystem.BussinessLogicLayer.BLL
 {
-    public class OrderDetailsBLL : BaseBusinessLogic<OrderDetail>
+    public class OrderDetailsBLL
     {
-        public override DataSet GetAll()
+        // ================= GET ALL =================
+        public List<OrderDetail> GetAll()
         {
-            return dal.ExecuteQueryDataSet("SELECT * FROM OrderDetails", CommandType.Text);
-        }
-
-        // Hàm này sẽ thực hiện "liên kết" sửa bảng Products khi thêm Detail
-        public override bool Add(OrderDetail entity, ref string error)
-        {
-            // 1. Câu lệnh thêm vào bảng Chi tiết hóa đơn
-            string sqlDetail = $"INSERT INTO OrderDetails VALUES ('{entity.OrderDetailID}', '{entity.OrderID}', " +
-                               $"'{entity.ProductID}', {entity.UnitPrice}, {entity.Quantity}, {entity.TotalAmount})";
-
-            bool isAdded = dal.MyExecuteNonQuery(sqlDetail, CommandType.Text, ref error);
-
-            // 2. NẾU THÊM THÀNH CÔNG -> Tự động trừ kho ở bảng Products
-            if (isAdded)
+            using (var db = new SupermarketDBEntities1())
             {
-                string sqlUpdateStock = $"UPDATE Products SET Stock = Stock - {entity.Quantity} " +
-                                        $"WHERE ProductID = '{entity.ProductID}'";
-                // Chạy lệnh update bảng khác ngay lập tức
-                return dal.MyExecuteNonQuery(sqlUpdateStock, CommandType.Text, ref error);
+                return db.OrderDetails.ToList();
             }
-
-            return false;
         }
 
-        public override bool Update(OrderDetail entity, ref string error)
+        // ================= ADD =================
+        public bool Add(OrderDetail entity, ref string error)
         {
-            string sql = $"UPDATE OrderDetails SET ProductID='{entity.ProductID}', Quantity={entity.Quantity} " +
-                         $"WHERE OrderDetailID='{entity.OrderDetailID}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    // 🔥 1. Check product tồn tại
+                    var product = db.Products.Find(entity.ProductID);
+
+                    if (product == null)
+                    {
+                        error = "Sản phẩm không tồn tại";
+                        return false;
+                    }
+
+                    // 🔥 2. Check tồn kho
+                    if (product.Stock < entity.Quantity)
+                    {
+                        error = "Không đủ hàng trong kho";
+                        return false;
+                    }
+
+                    // 🔥 3. Tính TotalAmount (tránh user nhập sai)
+                    entity.TotalAmount = entity.UnitPrice * entity.Quantity;
+
+                    // 🔥 4. Thêm OrderDetail
+                    db.OrderDetails.Add(entity);
+
+                    // 🔥 5. Trừ kho
+                    product.Stock -= entity.Quantity;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
 
-        public override bool Delete(object id, ref string error)
+        // ================= UPDATE =================
+        public bool Update(OrderDetail entity, ref string error)
         {
-            string sql = $"DELETE FROM OrderDetails WHERE OrderDetailID = '{id}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    var od = db.OrderDetails.Find(entity.OrderDetailID);
+
+                    if (od == null)
+                    {
+                        error = "Không tìm thấy chi tiết hóa đơn";
+                        return false;
+                    }
+
+                    od.ProductID = entity.ProductID;
+                    od.Quantity = entity.Quantity;
+                    od.UnitPrice = entity.UnitPrice;
+                    od.TotalAmount = entity.UnitPrice * entity.Quantity;
+
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
+
+        // ================= DELETE =================
+        public bool Delete(string id, ref string error)
+        {
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    var od = db.OrderDetails.Find(id);
+
+                    if (od == null)
+                    {
+                        error = "Không tìm thấy chi tiết hóa đơn";
+                        return false;
+                    }
+
+                    // 🔥 Hoàn lại kho khi xóa
+                    var product = db.Products.Find(od.ProductID);
+                    if (product != null)
+                    {
+                        product.Stock += od.Quantity;
+                    }
+
+                    db.OrderDetails.Remove(od);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
     }
 }

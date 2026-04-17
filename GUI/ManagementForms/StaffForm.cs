@@ -1,14 +1,8 @@
 ﻿using SupermarketSystem.BussinessLogicLayer.BLL;
-using SupermarketSystem.BussinessLogicLayer.Entities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SupermarketSystem; // 👉 dùng Entity Framework (Employee)
 
 namespace SupermarketSystem.GUI.ManagementForms
 {
@@ -19,29 +13,32 @@ namespace SupermarketSystem.GUI.ManagementForms
             InitializeComponent();
         }
 
+        // 👉 BLL
+        StaffBLL bll = new StaffBLL();
+
+        bool isAddMode = false;
+
         private void StaffForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'supermarketDBDataSet.Employees' table. You can move, or remove it, as needed.
-            this.employeesTableAdapter.Fill(this.supermarketDBDataSet.Employees);
-            // TODO: This line of code loads data into the 'supermarketDBDataSet.Customers' table. You can move, or remove it, as needed.
-            this.customersTableAdapter.Fill(this.supermarketDBDataSet.Customers);
-
+            LoadData();
+            SetState(false);
         }
 
-        StaffBLL bll = new StaffBLL();
-        bool isAddMode = false; // Cờ kiểm tra đang Thêm hay Sửa
+        // ================= LOAD DATA =================
+        private void LoadData()
+        {
+            dgvStaff.DataSource = bll.GetAll(); // ❌ KHÔNG dùng .Tables nữa
+        }
 
-        //hàm tắt/mở các Control để tránh người dùng bấm nhầm
+        // ================= STATE =================
         private void SetState(bool isEditing)
         {
-            // Các textBox
-            txtEmployeeID.Enabled = isEditing && isAddMode; // Chỉ cho nhập ID khi Thêm mới
+            txtEmployeeID.Enabled = isEditing && isAddMode;
             txtName.Enabled = isEditing;
             txtPhone.Enabled = isEditing;
             txtPosition.Enabled = isEditing;
             txtStatus.Enabled = isEditing;
 
-            // Các nút bấm
             btnSave.Enabled = isEditing;
             btnCancel.Enabled = isEditing;
 
@@ -50,14 +47,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             btnDelete.Enabled = !isEditing;
         }
 
-        // Hàm nạp dữ liệu lên GridView
-        private void LoadData()
-        {
-            string error = "";
-            // Vì BLL trả về DataSet nên ta lấy Table[0]
-            dgvStaff.DataSource = bll.GetAll().Tables[0];
-        }
-
+        // ================= CLEAR =================
         private void ClearInputs()
         {
             txtEmployeeID.Clear();
@@ -65,19 +55,17 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtPhone.Clear();
             txtPosition.Clear();
             txtStatus.Clear();
-
         }
 
-        private void dgvStaff_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        // ================= GRID CLICK =================
+        private void dgvStaff_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra nếu click vào dòng hợp lệ
             if (e.RowIndex >= 0)
             {
                 try
                 {
                     DataGridViewRow row = dgvStaff.Rows[e.RowIndex];
 
-                    // Cách 1: Dùng Index (Số thứ tự cột) - An toàn nhất
                     txtEmployeeID.Text = row.Cells[0].Value?.ToString();
                     txtName.Text = row.Cells[1].Value?.ToString();
                     txtPhone.Text = row.Cells[2].Value?.ToString();
@@ -89,88 +77,111 @@ namespace SupermarketSystem.GUI.ManagementForms
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi nạp dữ liệu: " + ex.Message);
+                    MessageBox.Show("Lỗi: " + ex.Message);
                 }
             }
         }
 
-        private void btnAdd_Click_1(object sender, EventArgs e)
+        // ================= ADD =================
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             isAddMode = true;
-            SetState(true); // Bật các TextBox lên để nhập dữ liệu mới  
-
-            // Xóa trắng các TextBox để nhập dữ liệu mới
+            SetState(true);
             ClearInputs();
-            // Khóa ô ID lại vì thường ID là khóa chính, không được sửa
             txtEmployeeID.Focus();
         }
 
-        private void btnEdit_Click_1(object sender, EventArgs e)
+        // ================= EDIT =================
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmployeeID.Text))
             {
-                MessageBox.Show("Vui lòng chọn một Staff để sửa.");
+                MessageBox.Show("Chọn nhân viên cần sửa!");
                 return;
             }
-            isAddMode = false; //đanh dấu đang ở chế độ sửa
-            SetState(true); // Bật các TextBox lên để sửa
+
+            isAddMode = false;
+            SetState(true);
+            txtEmployeeID.Enabled = false;
         }
 
-        private void btnCancel_Click_1(object sender, EventArgs e)
-        {
-            SetState(false); // Tắt các TextBox, bật lại các nút bấm
-        }
-
-        private void btnDelete_Click_1(object sender, EventArgs e)
+        // ================= DELETE =================
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             string id = txtEmployeeID.Text;
+
             if (string.IsNullOrEmpty(id))
             {
-                MessageBox.Show("Vui lòng chọn một Staff để xóa.");
+                MessageBox.Show("Chọn nhân viên cần xóa!");
                 return;
             }
 
-            DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa Staff này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dr == DialogResult.Yes)
+            DialogResult confirm = MessageBox.Show(
+                "Bạn có chắc muốn xóa?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (confirm == DialogResult.Yes)
             {
                 string error = "";
                 if (bll.Delete(id, ref error))
                 {
-                    MessageBox.Show("Xóa Staff thành công!");
-                    LoadData(); // Tải lại dữ liệu sau khi xóa
+                    MessageBox.Show("Xóa thành công!");
+                    LoadData();
+                    ClearInputs();
                 }
                 else
                 {
-                    MessageBox.Show("Xóa Staff thất bại! Lỗi: " + error);
+                    MessageBox.Show("Lỗi: " + error);
                 }
             }
         }
 
-        private void btnSave_Click_1(object sender, EventArgs e)
+        // ================= SAVE =================
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            string error = "";
-            // 1. Gom dữ liệu từ giao diện vào Entity
-            Staff cus = new Staff(
-                txtEmployeeID.Text,
-                txtName.Text,
-                txtPhone.Text,
-                txtPosition.Text,
-                txtStatus.Text == "1" ? 1 : 0 // Giả sử Status chỉ có 2 giá trị: 1 (active) và 0 (inactive)
-            );
-
-            // 2. Gọi BLL xử lý
-            bool success = isAddMode ? bll.Add(cus, ref error) : bll.Update(cus, ref error);
-
-            if (success)
+            try
             {
-                MessageBox.Show("Lưu dữ liệu thành công!");
-                SetState(false); // Khóa các ô nhập lại
-                LoadData();      // Cập nhật lại bảng hiển thị
+                string error = "";
+
+                // 👉 DÙNG EF ENTITY: Employee (KHÔNG phải Staff)
+                Employee emp = new Employee()
+                {
+                    EmployeeID = txtEmployeeID.Text,
+                    Name = txtName.Text,
+                    Phone = txtPhone.Text,
+                    Position = txtPosition.Text,
+                    Status = txtStatus.Text == "1" ? 1 : 0
+                };
+
+                bool success = isAddMode
+                    ? bll.Add(emp, ref error)
+                    : bll.Update(emp, ref error);
+
+                if (success)
+                {
+                    MessageBox.Show("Lưu thành công!");
+                    LoadData();
+                    SetState(false);
+                    ClearInputs();
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi: " + error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + error);
+                MessageBox.Show("Lỗi nhập: " + ex.Message);
             }
+        }
+
+        // ================= CANCEL =================
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            SetState(false);
         }
     }
 }

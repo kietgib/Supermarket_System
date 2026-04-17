@@ -1,39 +1,90 @@
-﻿using SupermarketSystem.BussinessLogicLayer.Entities;
+﻿using SupermarketSystem;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SupermarketSystem.BussinessLogicLayer.BLL
 {
-    public class CustomersBLL : BaseBusinessLogic<Customers>
+    public class CustomersBLL
     {
-        public override DataSet GetAll()
+        public List<Customer> GetAll()
         {
-            string sql = "SELECT * FROM Customers";
-            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
+            using (var db = new SupermarketDBEntities1())
+            {
+                return db.Customers.ToList();
+            }
         }
 
-        public override bool Add(Customers entity, ref string error)
+        public bool Add(Customer entity, ref string error)
         {
-            // N' ' cho tiếng Việt có dấu ở cột Name và Address
-            string sql = $"INSERT INTO Customers VALUES ('{entity.CustomerID}', N'{entity.Name}', '{entity.Phone}', N'{entity.Address}', 1)";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    entity.Status = 1;
+                    db.Customers.Add(entity);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
 
-        public override bool Update(Customers entity, ref string error)
+        public bool Update(Customer entity, ref string error)
         {
-            string sql = $"UPDATE Customers SET Name = N'{entity.Name}', Phone = '{entity.Phone}', Address = N'{entity.Address}' " +
-                         $"WHERE CustomerID = '{entity.CustomerID}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    var c = db.Customers.Find(entity.CustomerID);
+                    if (c == null)
+                    {
+                        error = "Không tìm thấy khách hàng";
+                        return false;
+                    }
+
+                    c.Name = entity.Name;
+                    c.Phone = entity.Phone;
+                    c.Address = entity.Address;
+
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
 
-        public override bool Delete(object id, ref string error)
+        public bool Delete(string id, ref string error)
         {
-            string sql = $"DELETE FROM Customers WHERE CustomerID = '{id}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    var c = db.Customers.Find(id);
+                    if (c == null)
+                    {
+                        error = "Không tìm thấy khách hàng";
+                        return false;
+                    }
+
+                    db.Customers.Remove(c);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
     }
 }

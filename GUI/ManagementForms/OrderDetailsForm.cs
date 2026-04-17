@@ -1,13 +1,8 @@
 ﻿using SupermarketSystem.BussinessLogicLayer.BLL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using SupermarketSystem;
 
 namespace SupermarketSystem.GUI.ManagementForms
 {
@@ -18,29 +13,33 @@ namespace SupermarketSystem.GUI.ManagementForms
             InitializeComponent();
         }
 
+        OrderDetailsBLL bll = new OrderDetailsBLL();
+        bool isAddMode = false;
+
+        // ================= LOAD =================
         private void OrderDetailsForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'supermarketDBDataSet.OrderDetails' table. You can move, or remove it, as needed.
-            this.orderDetailsTableAdapter.Fill(this.supermarketDBDataSet.OrderDetails);
-
+            LoadData();
+            SetState(false);
         }
 
-        OrderDetailsBLL bll = new OrderDetailsBLL();
-        bool isAddMode = false; // Cờ kiểm tra đang Thêm hay Sửa
-        private double TotalAmount;
+        // ================= LOAD DATA =================
+        private void LoadData()
+        {
+            dgvOrderDetails.DataSource = null;
+            dgvOrderDetails.DataSource = bll.GetAll();
+        }
 
-        //hàm tắt/mở các Control để tránh người dùng bấm nhầm
+        // ================= STATE =================
         private void SetState(bool isEditing)
         {
-            // Các textBox
-            txtOrderDetailID.Enabled = isEditing && isAddMode; // Chỉ cho nhập ID khi Thêm mới
+            txtOrderDetailID.Enabled = isEditing && isAddMode;
             txtOrderID.Enabled = isEditing;
             txtProductID.Enabled = isEditing;
             txtUnitprice.Enabled = isEditing;
             txtQuantity.Enabled = isEditing;
-            txtTotalAmount.Enabled = isEditing;
+            txtTotalAmount.Enabled = false; // luôn disable vì tự tính
 
-            // Các nút bấm
             btnSave.Enabled = isEditing;
             btnCancel.Enabled = isEditing;
 
@@ -49,37 +48,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             btnDelete.Enabled = !isEditing;
         }
 
-        // Hàm nạp dữ liệu lên GridView
-        private void LoadData()
-        {
-            string error = "";
-            // Vì BLL trả về DataSet nên ta lấy Table[0]
-            dgvOrderDetails.DataSource = bll.GetAll().Tables[0];
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            isAddMode = true;
-            // Xóa trắng các TextBox để nhập dữ liệu mới
-            txtOrderDetailID.Clear();
-            txtOrderID.Clear();
-            txtProductID.Clear();
-            txtUnitprice.Clear();
-            txtQuantity.Clear();
-            txtTotalAmount.Clear();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtOrderDetailID.Text))
-            {
-                MessageBox.Show("Vui lòng chọn một Order Detail để sửa.");
-                return;
-            }
-            isAddMode = false; //đanh dấu đang ở chế độ sửa
-            SetState(true); // Bật các TextBox lên để sửa
-        }
-
+        // ================= CLEAR =================
         private void ClearInputs()
         {
             txtOrderDetailID.Clear();
@@ -88,132 +57,147 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtUnitprice.Clear();
             txtQuantity.Clear();
             txtTotalAmount.Clear();
-
         }
 
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        // ================= ADD =================
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            SetState(false); // Tắt các TextBox, bật lại các nút bấm
+            isAddMode = true;
+            SetState(true);
+            ClearInputs();
+            txtOrderDetailID.Focus();
         }
 
+        // ================= EDIT =================
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtOrderDetailID.Text))
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần sửa!");
+                return;
+            }
+
+            isAddMode = false;
+            SetState(true);
+            txtOrderDetailID.Enabled = false;
+        }
+
+        // ================= DELETE =================
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string id = txtOrderDetailID.Text;
+
             if (string.IsNullOrEmpty(id))
-                {
-                    MessageBox.Show("Vui lòng chọn một Order Detail để xóa.");
-                    return;
+            {
+                MessageBox.Show("Vui lòng chọn dòng cần xóa!");
+                return;
             }
 
-            DialogResult dr = MessageBox.Show("Bạn có chắc chắn muốn xóa Order Detail này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dr == DialogResult.Yes)
+            if (MessageBox.Show("Xóa dòng này?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 string error = "";
+
                 if (bll.Delete(id, ref error))
                 {
-                    MessageBox.Show("Xóa Order Detail thành công!");
-                    LoadData(); // Tải lại dữ liệu sau khi xóa
+                    MessageBox.Show("Xóa thành công!");
+                    LoadData();
+                    ClearInputs();
                 }
                 else
                 {
-                    MessageBox.Show("Xóa Order Detail thất bại! Lỗi: " + error);
+                    MessageBox.Show("Lỗi: " + error);
                 }
             }
         }
 
-        private double GetTotalAmount()
-        {
-            return TotalAmount;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e, double totalAmount)
+        // ================= SAVE =================
+        // ================= SAVE =================
+        private void btnSave_Click(object sender, EventArgs e)
         {
             string error = "";
-            //1. Gom dữ liệu từ giao diện vào Entity
-            var orderDetail = BuildOrderDetailFromInputs();
-            bool success;
-            if (isAddMode)
-            {
-                // Thêm mới
-                success = bll.Add(orderDetail, ref error);
-            }
-            else
-            {
-                // Cập nhật
-                success = bll.Update(orderDetail, ref error);
-            }
-            if (success)
-            {
-                MessageBox.Show(isAddMode ? "Thêm Order Detail thành công!" : "Cập nhật Order Detail thành công!");
-                LoadData(); // Tải lại dữ liệu sau khi thêm/sửa
-                ClearInputs(); // Xóa trắng các ô nhập sau khi lưu
-                SetState(false); // Trở về trạng thái ban đầu
-            }
-            else
-            {
-                MessageBox.Show("Lưu Order Detail thất bại! Lỗi: " + error);
-            }
 
+            try
+            {
+                var od = BuildOrderDetail();
+
+                bool success = isAddMode
+                    ? bll.Add(od, ref error)
+                    : bll.Update(od, ref error);
+
+                if (success)
+                {
+                    MessageBox.Show("Lưu thành công!");
+                    LoadData();
+                    ClearInputs();
+                    SetState(false);      // ← đúng thứ tự: clear xong mới set state
+                    isAddMode = false;    // ← reset flag
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi: " + error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private BussinessLogicLayer.Entities.OrderDetail BuildOrderDetailFromInputs()
-{
+        // ================= BUILD ENTITY =================
+        private OrderDetail BuildOrderDetail()
+        {
             if (string.IsNullOrWhiteSpace(txtOrderDetailID.Text) ||
                 string.IsNullOrWhiteSpace(txtOrderID.Text) ||
                 string.IsNullOrWhiteSpace(txtProductID.Text))
             {
-                throw new Exception("Vui lòng nhập đầy đủ thông tin!");
+                throw new Exception("Nhập thiếu dữ liệu!");
             }
 
             if (!decimal.TryParse(txtUnitprice.Text, out decimal unitPrice))
-            {
-                throw new Exception("Unit Price không hợp lệ!");
-            }
+                throw new Exception("UnitPrice sai!");
 
             if (!int.TryParse(txtQuantity.Text, out int quantity))
-            {
-                throw new Exception("Quantity không hợp lệ!");
-            }
+                throw new Exception("Quantity sai!");
 
-            decimal totalAmount = unitPrice * quantity; // tự tính lại cho chuẩn
+            decimal total = unitPrice * quantity;
 
-            return new BussinessLogicLayer.Entities.OrderDetail
+            txtTotalAmount.Text = total.ToString();
+
+            return new OrderDetail
             {
                 OrderDetailID = txtOrderDetailID.Text.Trim(),
                 OrderID = txtOrderID.Text.Trim(),
                 ProductID = txtProductID.Text.Trim(),
-                UnitPrice = (double)unitPrice,
+                UnitPrice = unitPrice,
                 Quantity = quantity,
-                totalAmount = totalAmount
+                TotalAmount = total
             };
         }
 
+        // ================= GRID CLICK =================
         private void dgvOrderDetails_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Đảm bảo người dùng không bấm vào header
-            {
-                try
-                {
-                    DataGridViewRow row = dgvOrderDetails.Rows[e.RowIndex];
-                    txtOrderDetailID.Text = row.Cells[0].Value?.ToString();
-                    txtOrderID.Text = row.Cells[1].Value?.ToString();
-                    txtProductID.Text = row.Cells[2].Value?.ToString();
-                    txtUnitprice.Text = row.Cells[3].Value?.ToString();
-                    txtQuantity.Text = row.Cells[4].Value?.ToString();
-                    txtTotalAmount.Text = row.Cells[5].Value?.ToString();
-                    textBox1.Text = row.Cells[6].Value?.ToString(); 
+            if (e.RowIndex < 0) return;
 
-                    btnEdit.Enabled = true; // Cho phép sửa khi đã chọn một dòng
-                    btnDelete.Enabled = true; // Cho phép xóa khi đã chọn một dòng
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi chọn Order Detail: " + ex.Message);
-                }
+            var row = dgvOrderDetails.Rows[e.RowIndex];
 
-            }
+            txtOrderDetailID.Text = row.Cells["OrderDetailID"].Value?.ToString();
+            txtOrderID.Text = row.Cells["OrderID"].Value?.ToString();
+            txtProductID.Text = row.Cells["ProductID"].Value?.ToString();
+            txtUnitprice.Text = row.Cells["UnitPrice"].Value?.ToString();
+            txtQuantity.Text = row.Cells["Quantity"].Value?.ToString();
+            txtTotalAmount.Text = row.Cells["TotalAmount"].Value?.ToString();
 
+            btnEdit.Enabled = true;
+            btnDelete.Enabled = true;
+        }
+
+        // ================= CANCEL =================
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            // Restore non-editing state and clear inputs when Cancel is clicked.
+            ClearInputs();
+            SetState(false);
         }
     }
 }

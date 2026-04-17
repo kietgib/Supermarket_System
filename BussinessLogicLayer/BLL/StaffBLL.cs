@@ -1,80 +1,83 @@
-﻿using SupermarketSystem.BussinessLogicLayer.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using static SupermarketSystem.DataLayer.DataAccessLayer;
+using SupermarketSystem;
 
 namespace SupermarketSystem.BussinessLogicLayer.BLL
 {
-    // BLL/StaffBLL.cs
-    public class StaffBLL : BaseBusinessLogic<Staff>
+    public class StaffBLL
     {
-        public override DataSet GetAll()
+        // EF context
+        SupermarketDBEntities1 db = new SupermarketDBEntities1();
+
+        // ================= GET ALL =================
+        public List<Employee> GetAll()
         {
-            // Chỉ lấy những người đang hoạt động (Status = 1)
-            string sql = "SELECT * FROM Employees WHERE Status = 1";
-            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
+            return db.Employees
+                     .Where(e => e.Status == 1) // chỉ lấy đang hoạt động
+                     .ToList();
         }
 
-        public override bool Add(Staff entity, ref string error)
+        // ================= ADD =================
+        public bool Add(Employee entity, ref string error)
         {
-            string sql = $"INSERT INTO Employees VALUES ('{entity.EmployeeID}', N'{entity.Name}', '{entity.Phone}', N'{entity.Position}',1 )";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
-        }
-
-        public override bool Update(Staff entity, ref string error)
-        {
-            string sql = $"UPDATE Employees SET Name = N'{entity.Name}', Phone = '{entity.Phone}', Position = N'{entity.Position}' WHERE EmployeeID = '{entity.EmployeeID}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
-        }
-
-
-        public override bool Delete(object id, ref string error)
-        {
-            if (id == null || string.IsNullOrWhiteSpace(id.ToString()))
+            try
             {
-                error = "ID không hợp lệ";
+                entity.Status = 1;
+                db.Employees.Add(entity);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
                 return false;
             }
-
-            // Chuỗi SQL cập nhật Status cho cả 3 bảng liên quan
-            // Giả sử bảng Orders và OrderDetails cũng có cột Status
-            string sql = @"
-
-        -- 3. Cuối cùng mới cập nhật trạng thái của chính nhân viên đó
-            UPDATE Employees SET Status = 0 WHERE EmployeeID = @id";
-
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-        new SqlParameter("@id", id)
-            };
-
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error, parameters);
         }
 
+        // ================= UPDATE =================
+        public bool Update(Employee entity, ref string error)
+        {
+            try
+            {
+                var s = db.Employees.Find(entity.EmployeeID);
+                if (s != null)
+                {
+                    s.Name = entity.Name;
+                    s.Phone = entity.Phone;
+                    s.Position = entity.Position;
 
-        // Logic riêng của Employee
-        //private bool IsEmployeeIDExists(string id)
-        //{
-        //    string query = "SELECT COUNT(*) FROM Employees WHERE EmployeeID=@id";
-        //    return Convert.ToInt32(dal.ExecuteScalar(query,
-        //        new SqlParameter("@id", id))) > 0;
-        //}
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
 
-        //private void UpdateRelatedOrders(string empId)
-        //{
-        //    // Cập nhật các đơn hàng liên quan
-        //}
+        // ================= DELETE =================
+        public bool Delete(string id, ref string error)
+        {
+            try
+            {
+                var s = db.Employees.Find(id);
+                if (s != null)
+                {
+                    // 👉 soft delete (giống code cũ)
+                    s.Status = 0;
 
-        //public DataTable GetByPosition(string position)
-        //{
-        //    string query = "SELECT * FROM Employees WHERE Position=@pos";
-        //    return dal.ExecuteQuery(query, new SqlParameter("@pos", position));
-        //}
+                    db.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
+        }
     }
 }

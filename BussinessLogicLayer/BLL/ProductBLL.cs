@@ -1,63 +1,100 @@
-﻿using SupermarketSystem.BussinessLogicLayer.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SupermarketSystem;
 
 namespace SupermarketSystem.BussinessLogicLayer.BLL
 {
-    public class ProductBLL : BaseBusinessLogic<Product>
+    public class ProductBLL
     {
-        public SqlDbType Quantity { get; private set; }
-        public SqlDbType ProductID { get; private set; }
-
-        public override bool Add(Product entity, ref string error)
+        // ================= GET ALL =================
+        public List<Product> GetAll()
         {
-            // Lưu ý: N' ' dùng cho các trường tiếng Việt có dấu như Name
-            string sql = $"INSERT INTO Products VALUES ('{entity.ProductID}', '{entity.CategoryID}', N'{entity.Name}', {entity.Price}, {entity.Stock}, {entity.Status})";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
-        }
-        public override bool Delete(object id, ref string error)
-        {
-            if (id == null || string.IsNullOrWhiteSpace(id.ToString()))
+            using (var db = new SupermarketDBEntities1())
             {
-                error = "ID không hợp lệ";
+                return db.Products.ToList();
+            }
+        }
+
+        // ================= ADD =================
+        public bool Add(Product entity, ref string error)
+        {
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    entity.Status = 1; // active
+                    db.Products.Add(entity);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
                 return false;
             }
+        }
 
-            // Chuỗi SQL cập nhật Status cho cả 3 bảng liên quan
-            // Giả sử bảng Orders và OrderDetails cũng có cột Status
-            string sql = @"
-            UPDATE Products SET Status = 0 WHERE ProductID = @id";
-
-            SqlParameter[] parameters = new SqlParameter[]
+        // ================= UPDATE =================
+        public bool Update(Product entity, ref string error)
+        {
+            try
             {
-                 new SqlParameter("@id", id)
-            };
+                using (var db = new SupermarketDBEntities1())
+                {
+                    var p = db.Products.Find(entity.ProductID);
 
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error, parameters);
+                    if (p == null)
+                    {
+                        error = "Không tìm thấy sản phẩm";
+                        return false;
+                    }
+
+                    p.CategoryID = entity.CategoryID;
+                    p.Name = entity.Name;
+                    p.Price = entity.Price;
+                    p.Stock = entity.Stock;
+                    p.Status = entity.Status;
+
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
-        public override DataSet GetAll()
-        {
-            string sql = "SELECT * FROM Products";
-            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
-        }
-        public override bool Update(Product entity, ref string error)
-        {
-            string sql = $"UPDATE Products SET CategoryID = '{entity.CategoryID}', Name = N'{entity.Name}', Price = N'{entity.Price}', Stock = N'{entity.Stock}', Status = {entity.Status} WHERE ProductID = '{entity.ProductID}'";
-            // Lệnh SQL trừ kho, đảm bảo không trừ quá số lượng tồn (Stock >= @qty)
-            //string sql = "UPDATE Products SET Stock = Stock - @qty WHERE ProductID = @id AND Stock >= @qty";
 
-            //SqlParameter[] parameters = new SqlParameter[]
-            //{
-            //    new SqlParameter("@id", ProductID ),
-            //    new SqlParameter("@qty", Quantity)
-            //};
+        // ================= DELETE (Soft Delete) =================
+        public bool Delete(string id, ref string error)
+        {
+            try
+            {
+                using (var db = new SupermarketDBEntities1())
+                {
+                    var p = db.Products.Find(id);
 
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+                    if (p == null)
+                    {
+                        error = "Không tìm thấy sản phẩm";
+                        return false;
+                    }
+
+                    // 🔥 Soft delete (không xóa thật)
+                    p.Status = 0;
+
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return false;
+            }
         }
     }
 }

@@ -12,8 +12,29 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
     {
         public override DataSet GetAll()
         {
-            return dal.ExecuteQueryDataSet("SELECT * FROM OrderDetails", CommandType.Text);
+            string sql = @"
+    SELECT 
+        o.OrderID,
+        c.Name AS CustomerName,
+        c.Phone,
+        c.Address,
+        o.Status,
+        p.ProductID,
+        p.Name AS ProductName,
+        p.Price,
+        p.Stock,
+        od.UnitPrice,
+        od.Quantity,
+        od.TotalAmount
+    FROM Orders o
+    JOIN Customers c ON o.CustomerID = c.CustomerID
+    JOIN OrderDetails od ON o.OrderID = od.OrderID
+    JOIN Products p ON od.ProductID = p.ProductID
+    ";
+
+            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
         }
+
 
         // Hàm này sẽ thực hiện "liên kết" sửa bảng Products khi thêm Detail
         public override bool Add(OrderDetail entity, ref string error)

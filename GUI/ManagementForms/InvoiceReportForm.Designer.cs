@@ -80,7 +80,7 @@
             this.ClientSize = new System.Drawing.Size(1037, 460);
             this.Controls.Add(this.reportViewer1);
             this.Name = "InvoiceReportForm";
-            this.Text = "InvoiceReportForm";
+            this.Text = "))";
             this.Load += new System.EventHandler(this.InvoiceReportForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderReportBindingSource)).EndInit();

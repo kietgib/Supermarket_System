@@ -1,250 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-	<PropertyGroup>
-		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-		<ProjectGuid>{F4D7C9EA-8CBB-4B67-BB4A-72816E9ABA7A}</ProjectGuid>
-		<OutputType>WinExe</OutputType>
-		<RootNamespace>SupermarketSystem</RootNamespace>
-		<AssemblyName>SupermarketSystem</AssemblyName>
-		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-		<FileAlignment>512</FileAlignment>
-		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-		<Deterministic>true</Deterministic>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<DebugSymbols>true</DebugSymbols>
-		<DebugType>full</DebugType>
-		<Optimize>false</Optimize>
-		<OutputPath>bin\Debug\</OutputPath>
-		<DefineConstants>DEBUG;TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<PlatformTarget>AnyCPU</PlatformTarget>
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<OutputPath>bin\Release\</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
-		<ErrorReport>prompt</ErrorReport>
-		<WarningLevel>4</WarningLevel>
-	</PropertyGroup>
-	<ItemGroup>
-		<Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-			<HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-			<HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-			<HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-			<HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-			<HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-			<HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-			<HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
-		</Reference>
-		<Reference Include="System" />
-		<Reference Include="System.ComponentModel.DataAnnotations" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Data.Entity" />
-		<Reference Include="System.Runtime.Serialization" />
-		<Reference Include="System.Security" />
-		<Reference Include="System.Xml.Linq" />
-		<Reference Include="System.Data.DataSetExtensions" />
-		<Reference Include="Microsoft.CSharp" />
-		<Reference Include="System.Data" />
-		<Reference Include="System.Deployment" />
-		<Reference Include="System.Drawing" />
-		<Reference Include="System.Net.Http" />
-		<Reference Include="System.Windows.Forms" />
-		<Reference Include="System.Xml" />
-	</ItemGroup>
-	<ItemGroup>
-		<Compile Include="BussinessLogicLayer\BLL\CustomersBLL.cs" />
-		<Compile Include="BussinessLogicLayer\BLL\OrderDetailsBLL.cs" />
-		<Compile Include="BussinessLogicLayer\BLL\StaffBLL.cs" />
-		<Compile Include="BussinessLogicLayer\BLL\OrderBLL.cs" />
-		<Compile Include="BussinessLogicLayer\BLL\ProductBLL.cs" />
-		<Compile Include="Customer.cs">
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<Compile Include="Employee.cs">
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\AdminForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\AdminForm.Designer.cs">
-			<DependentUpon>AdminForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\MainForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\MainForm.Designer.cs">
-			<DependentUpon>MainForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\LogInForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\LogInForm.Designer.cs">
-			<DependentUpon>LogInForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\CustomersForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\CustomersForm.Designer.cs">
-			<DependentUpon>CustomersForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\OrderDetailsForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\OrderDetailsForm.Designer.cs">
-			<DependentUpon>OrderDetailsForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\OrdersForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\OrdersForm.Designer.cs">
-			<DependentUpon>OrdersForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\ProductsForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\ProductsForm.Designer.cs">
-			<DependentUpon>ProductsForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\Splash.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\Splash.Designer.cs">
-			<DependentUpon>Splash.cs</DependentUpon>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\StaffForm.cs">
-			<SubType>Form</SubType>
-		</Compile>
-		<Compile Include="GUI\ManagementForms\StaffForm.Designer.cs">
-			<DependentUpon>StaffForm.cs</DependentUpon>
-		</Compile>
-		<Compile Include="Order.cs">
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<Compile Include="OrderDetail.cs">
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<Compile Include="Product.cs">
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<Compile Include="Program.cs" />
-		<Compile Include="Properties\AssemblyInfo.cs" />
-		<Compile Include="SqlServerTypes\Loader.cs" />
-		<Compile Include="SupermarketModel.Context.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>SupermarketModel.Context.tt</DependentUpon>
-		</Compile>
-		<Compile Include="SupermarketModel.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<Compile Include="SupermarketModel.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DesignTime>True</DesignTime>
-			<DependentUpon>SupermarketModel.edmx</DependentUpon>
-		</Compile>
-		<Compile Include="sysdiagram.cs">
-			<DependentUpon>SupermarketModel.tt</DependentUpon>
-		</Compile>
-		<EmbeddedResource Include="GUI\AdminForm.resx">
-			<DependentUpon>AdminForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\LogInForm.resx">
-			<DependentUpon>LogInForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\MainForm.resx">
-			<DependentUpon>MainForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\ManagementForms\CustomersForm.resx">
-			<DependentUpon>CustomersForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\ManagementForms\OrderDetailsForm.resx">
-			<DependentUpon>OrderDetailsForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\ManagementForms\OrdersForm.resx">
-			<DependentUpon>OrdersForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\ManagementForms\ProductsForm.resx">
-			<DependentUpon>ProductsForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\ManagementForms\StaffForm.resx">
-			<DependentUpon>StaffForm.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="GUI\Splash.resx">
-			<DependentUpon>Splash.cs</DependentUpon>
-		</EmbeddedResource>
-		<EmbeddedResource Include="Properties\Resources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
-			<SubType>Designer</SubType>
-		</EmbeddedResource>
-		<Compile Include="Properties\Resources.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Resources.resx</DependentUpon>
-			<DesignTime>True</DesignTime>
-		</Compile>
-		<None Include="packages.config" />
-		<None Include="Properties\Settings.settings">
-			<Generator>SettingsSingleFileGenerator</Generator>
-			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
-		</None>
-		<Compile Include="Properties\Settings.Designer.cs">
-			<AutoGen>True</AutoGen>
-			<DependentUpon>Settings.settings</DependentUpon>
-			<DesignTimeSharedInput>True</DesignTimeSharedInput>
-		</Compile>
-		<EntityDeploy Include="SupermarketModel.edmx">
-			<Generator>EntityModelCodeGenerator</Generator>
-			<LastGenOutput>SupermarketModel.Designer.cs</LastGenOutput>
-		</EntityDeploy>
-		<None Include="SupermarketModel.edmx.diagram">
-			<DependentUpon>SupermarketModel.edmx</DependentUpon>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<None Include="App.config" />
-	</ItemGroup>
-	<ItemGroup>
-		<WCFMetadata Include="Connected Services\" />
-	</ItemGroup>
-	<ItemGroup>
-		<Content Include="SqlServerTypes\readme.htm" />
-		<Content Include="SupermarketModel.Context.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<LastGenOutput>SupermarketModel.Context.cs</LastGenOutput>
-			<DependentUpon>SupermarketModel.edmx</DependentUpon>
-		</Content>
-		<Content Include="SupermarketModel.tt">
-			<Generator>TextTemplatingFileGenerator</Generator>
-			<DependentUpon>SupermarketModel.edmx</DependentUpon>
-			<LastGenOutput>SupermarketModel.cs</LastGenOutput>
-		</Content>
-		<None Include="Images\9784291.jpg" />
-		<Content Include="Images\admin_icon.png" />
-		<Content Include="Images\porsche_911_turbo_03_by_uptownzombie31_dj84k3y.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-	</ItemGroup>
-	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F4D7C9EA-8CBB-4B67-BB4A-72816E9ABA7A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SupermarketSystem</RootNamespace>
+    <AssemblyName>SupermarketSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BussinessLogicLayer\BLL\CustomersBLL.cs" />
+    <Compile Include="BussinessLogicLayer\BLL\OrderDetailsBLL.cs" />
+    <Compile Include="BussinessLogicLayer\BLL\StaffBLL.cs" />
+    <Compile Include="BussinessLogicLayer\BLL\OrderBLL.cs" />
+    <Compile Include="BussinessLogicLayer\BLL\ProductBLL.cs" />
+    <Compile Include="Customer.cs">
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\AdminForm.Designer.cs">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\LogInForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\LogInForm.Designer.cs">
+      <DependentUpon>LogInForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\CustomersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\CustomersForm.Designer.cs">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\InvoiceReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\InvoiceReport.Designer.cs">
+      <DependentUpon>InvoiceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\OrderDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\OrderDetailsForm.Designer.cs">
+      <DependentUpon>OrderDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\OrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\OrdersForm.Designer.cs">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\ProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\ProductsForm.Designer.cs">
+      <DependentUpon>ProductsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Splash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Splash.Designer.cs">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\StaffForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\ManagementForms\StaffForm.Designer.cs">
+      <DependentUpon>StaffForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderDetail.cs">
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="SupermarketDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SupermarketModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupermarketModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SupermarketModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupermarketModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>SupermarketModel.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="GUI\AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\LogInForm.resx">
+      <DependentUpon>LogInForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ManagementForms\CustomersForm.resx">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ManagementForms\InvoiceReport.resx">
+      <DependentUpon>InvoiceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ManagementForms\OrderDetailsForm.resx">
+      <DependentUpon>OrderDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ManagementForms\OrdersForm.resx">
+      <DependentUpon>OrdersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ManagementForms\ProductsForm.resx">
+      <DependentUpon>ProductsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\ManagementForms\Report1.rdlc" />
+    <EmbeddedResource Include="GUI\ManagementForms\StaffForm.resx">
+      <DependentUpon>StaffForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Splash.resx">
+      <DependentUpon>Splash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="SupermarketModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SupermarketModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SupermarketDBDataSet.xsc">
+      <DependentUpon>SupermarketDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SupermarketDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SupermarketDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SupermarketDBDataSet.xss">
+      <DependentUpon>SupermarketDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SupermarketModel.edmx.diagram">
+      <DependentUpon>SupermarketModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SupermarketModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SupermarketModel.Context.cs</LastGenOutput>
+      <DependentUpon>SupermarketModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="SupermarketModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SupermarketModel.edmx</DependentUpon>
+      <LastGenOutput>SupermarketModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Images\9784291.jpg" />
+    <Content Include="Images\admin_icon.png" />
+    <Content Include="Images\porsche_911_turbo_03_by_uptownzombie31_dj84k3y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -12,6 +12,7 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         {
             using (var db = new SupermarketDBEntities1())
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 return db.Products.ToList();
             }
         }
@@ -23,7 +24,7 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
             {
                 using (var db = new SupermarketDBEntities1())
                 {
-                    entity.Status = 1; // active
+                    entity.Status = 1;
                     db.Products.Add(entity);
                     db.SaveChanges();
                     return true;
@@ -83,9 +84,7 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                         return false;
                     }
 
-                    // 🔥 Soft delete (không xóa thật)
-                    p.Status = 0;
-
+                    p.Status = 0; // Soft delete
                     db.SaveChanges();
                     return true;
                 }

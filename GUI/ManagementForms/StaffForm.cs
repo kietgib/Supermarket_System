@@ -1,8 +1,7 @@
 ﻿using SupermarketSystem.BussinessLogicLayer.BLL;
 using System;
-using System.Data;
 using System.Windows.Forms;
-using SupermarketSystem; // 👉 dùng Entity Framework (Employee)
+using SupermarketSystem;
 
 namespace SupermarketSystem.GUI.ManagementForms
 {
@@ -13,9 +12,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             InitializeComponent();
         }
 
-        // 👉 BLL
         StaffBLL bll = new StaffBLL();
-
         bool isAddMode = false;
 
         private void StaffForm_Load(object sender, EventArgs e)
@@ -24,13 +21,11 @@ namespace SupermarketSystem.GUI.ManagementForms
             SetState(false);
         }
 
-        // ================= LOAD DATA =================
         private void LoadData()
         {
-            dgvStaff.DataSource = bll.GetAll(); // ❌ KHÔNG dùng .Tables nữa
+            dgvStaff.DataSource = bll.GetAll();
         }
 
-        // ================= STATE =================
         private void SetState(bool isEditing)
         {
             txtEmployeeID.Enabled = isEditing && isAddMode;
@@ -47,7 +42,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             btnDelete.Enabled = !isEditing;
         }
 
-        // ================= CLEAR =================
         private void ClearInputs()
         {
             txtEmployeeID.Clear();
@@ -57,8 +51,8 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtStatus.Clear();
         }
 
-        // ================= GRID CLICK =================
-        private void dgvStaff_CellClick(object sender, DataGridViewCellEventArgs e)
+        // ⚠️ Đổi tên thành _1 cho khớp Designer
+        private void dgvStaff_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -82,8 +76,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        // ================= ADD =================
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
             isAddMode = true;
             SetState(true);
@@ -91,8 +84,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtEmployeeID.Focus();
         }
 
-        // ================= EDIT =================
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmployeeID.Text))
             {
@@ -105,8 +97,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtEmployeeID.Enabled = false;
         }
 
-        // ================= DELETE =================
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click_1(object sender, EventArgs e)
         {
             string id = txtEmployeeID.Text;
 
@@ -117,11 +108,8 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
 
             DialogResult confirm = MessageBox.Show(
-                "Bạn có chắc muốn xóa?",
-                "Xác nhận",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+                "Bạn có chắc muốn xóa?", "Xác nhận",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirm == DialogResult.Yes)
             {
@@ -139,14 +127,12 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        // ================= SAVE =================
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             try
             {
                 string error = "";
 
-                // 👉 DÙNG EF ENTITY: Employee (KHÔNG phải Staff)
                 Employee emp = new Employee()
                 {
                     EmployeeID = txtEmployeeID.Text,
@@ -178,8 +164,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        // ================= CANCEL =================
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             SetState(false);
         }

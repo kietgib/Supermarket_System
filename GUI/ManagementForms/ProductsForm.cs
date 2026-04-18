@@ -15,24 +15,18 @@ namespace SupermarketSystem.GUI.ManagementForms
         ProductBLL bll = new ProductBLL();
         bool isAddMode = false;
 
-        // ================= LOAD =================
         private void ProductsForm_Load(object sender, EventArgs e)
         {
-            // ❌ XÓA dòng TableAdapter
-            // this.productsTableAdapter.Fill(this.supermarketDBDataSet.Products);
-
             LoadData();
             SetState(false);
         }
 
-        // ================= LOAD DATA =================
         private void LoadData()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = bll.GetAll(); // EF -> List<>
+            dataGridView1.DataSource = bll.GetAll();
         }
 
-        // ================= STATE =================
         private void SetState(bool isEditing)
         {
             txtProductID.Enabled = isEditing && isAddMode;
@@ -50,7 +44,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             btnDelete.Enabled = !isEditing;
         }
 
-        // ================= CLEAR =================
         private void ClearInputs()
         {
             txtProductID.Clear();
@@ -61,7 +54,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtStatus.Clear();
         }
 
-        // ================= GRID CLICK =================
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -86,7 +78,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        // ================= ADD =================
         private void btnAdd_Click(object sender, EventArgs e)
         {
             isAddMode = true;
@@ -95,7 +86,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtProductID.Focus();
         }
 
-        // ================= EDIT =================
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtProductID.Text))
@@ -109,13 +99,11 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtProductID.Enabled = false;
         }
 
-        // ================= CANCEL =================
         private void btnCancel_Click(object sender, EventArgs e)
         {
             SetState(false);
         }
 
-        // ================= DELETE =================
         private void btnDelete_Click(object sender, EventArgs e)
         {
             string id = txtProductID.Text;
@@ -143,7 +131,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        // ================= SAVE =================
         private void btnSave_Click(object sender, EventArgs e)
         {
             string error = "";
@@ -174,14 +161,11 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        // ================= BUILD ENTITY =================
         private Product BuildProduct()
         {
             if (string.IsNullOrWhiteSpace(txtProductID.Text) ||
                 string.IsNullOrWhiteSpace(txtName.Text))
-            {
                 throw new Exception("Nhập thiếu dữ liệu!");
-            }
 
             if (!decimal.TryParse(txtPrice.Text, out decimal price))
                 throw new Exception("Price sai!");

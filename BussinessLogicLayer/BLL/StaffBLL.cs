@@ -7,15 +7,16 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
 {
     public class StaffBLL
     {
-        // EF context
-        SupermarketDBEntities1 db = new SupermarketDBEntities1();
-
         // ================= GET ALL =================
         public List<Employee> GetAll()
         {
-            return db.Employees
-                     .Where(e => e.Status == 1) // chỉ lấy đang hoạt động
-                     .ToList();
+            using (var db = new SupermarketDBEntities1())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+                return db.Employees
+                         .Where(e => e.Status == 1)
+                         .ToList();
+            }
         }
 
         // ================= ADD =================
@@ -23,10 +24,13 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         {
             try
             {
-                entity.Status = 1;
-                db.Employees.Add(entity);
-                db.SaveChanges();
-                return true;
+                using (var db = new SupermarketDBEntities1())
+                {
+                    entity.Status = 1;
+                    db.Employees.Add(entity);
+                    db.SaveChanges();
+                    return true;
+                }
             }
             catch (Exception ex)
             {
@@ -40,16 +44,22 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         {
             try
             {
-                var s = db.Employees.Find(entity.EmployeeID);
-                if (s != null)
+                using (var db = new SupermarketDBEntities1())
                 {
+                    var s = db.Employees.Find(entity.EmployeeID);
+                    if (s == null)
+                    {
+                        error = "Không tìm thấy nhân viên";
+                        return false;
+                    }
+
                     s.Name = entity.Name;
                     s.Phone = entity.Phone;
                     s.Position = entity.Position;
 
                     db.SaveChanges();
+                    return true;
                 }
-                return true;
             }
             catch (Exception ex)
             {
@@ -58,20 +68,24 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
             }
         }
 
-        // ================= DELETE =================
+        // ================= DELETE (Soft Delete) =================
         public bool Delete(string id, ref string error)
         {
             try
             {
-                var s = db.Employees.Find(id);
-                if (s != null)
+                using (var db = new SupermarketDBEntities1())
                 {
-                    // 👉 soft delete (giống code cũ)
-                    s.Status = 0;
+                    var s = db.Employees.Find(id);
+                    if (s == null)
+                    {
+                        error = "Không tìm thấy nhân viên";
+                        return false;
+                    }
 
+                    s.Status = 0; // Soft delete
                     db.SaveChanges();
+                    return true;
                 }
-                return true;
             }
             catch (Exception ex)
             {

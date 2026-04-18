@@ -12,6 +12,7 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         {
             using (var db = new SupermarketDBEntities1())
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 return db.Orders.ToList();
             }
         }
@@ -79,19 +80,16 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                         return false;
                     }
 
-                    // ⚠️ Xóa chi tiết trước (FK)
+                    // Xóa chi tiết trước (FK)
                     var details = db.OrderDetails
                                     .Where(d => d.OrderID == id)
                                     .ToList();
 
                     foreach (var d in details)
-                    {
                         db.OrderDetails.Remove(d);
-                    }
 
                     db.Orders.Remove(o);
                     db.SaveChanges();
-
                     return true;
                 }
             }

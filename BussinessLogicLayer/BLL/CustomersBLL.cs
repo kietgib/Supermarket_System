@@ -11,6 +11,7 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         {
             using (var db = new SupermarketDBEntities1())
             {
+                db.Configuration.LazyLoadingEnabled = false;
                 return db.Customers.ToList();
             }
         }

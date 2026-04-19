@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using SupermarketSystem;
 
+
+
 namespace SupermarketSystem.BussinessLogicLayer.BLL
 {
     public class ProductBLL
@@ -95,5 +97,43 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                 return false;
             }
         }
-    }
+
+        private readonly SupermarketDBContext _db = new SupermarketDBContext();
+        public List<Staff> StaffSearch(string employeeID, string name, string phone, string position, ref string error)
+        {
+            try
+            {
+                // 1. Lấy toàn bộ nhân viên có Status = 1 (IQueryable giúp tối ưu hóa câu lệnh trước khi chạy)
+                var query = _db.Staffs.AsQueryable().Where(s => s.Status == 1);
+
+                // 2. Kiểm tra từng điều kiện (Tương đương LIKE trong SQL)
+                if (!string.IsNullOrEmpty(employeeID))
+                {
+                    query = query.Where(s => s.EmployeeId.Contains(employeeID));
+                }
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    query = query.Where(s => s.Name.Contains(name));
+                }
+
+                if (!string.IsNullOrEmpty(phone))
+                {
+                    query = query.Where(s => s.Phone.Contains(phone));
+                }
+
+                if (!string.IsNullOrEmpty(position))
+                {
+                    query = query.Where(s => s.Position.Contains(position));
+                }
+
+                // 3. Thực thi truy vấn và trả về danh sách Object
+                return query.ToList();
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return null;
+            }
+        }
 }

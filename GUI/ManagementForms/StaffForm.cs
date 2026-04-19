@@ -1,9 +1,11 @@
 ﻿using SupermarketSystem.BussinessLogicLayer.BLL;
 using SupermarketSystem.BussinessLogicLayer.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -170,6 +172,35 @@ namespace SupermarketSystem.GUI.ManagementForms
             else
             {
                 MessageBox.Show("Lỗi: " + error);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtEmployeeID.Clear();
+            txtName.Clear();
+            txtPhone.Clear();
+            txtPosition.Clear();
+
+            LoadData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string employeeID = txtEmployeeIDSearch.Text.Trim();
+            string name = txtNameSearch.Text.Trim();
+            string phone = txtPhoneSearch.Text.Trim();
+            string position = txtPositionSearch.Text.Trim();
+            string error = "";
+
+            try
+            {
+                dgvStaff.DataSource = bll.StaffSearch(employeeID, name, phone, position).Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + error);
+
             }
         }
     }

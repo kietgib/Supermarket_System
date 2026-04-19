@@ -16,9 +16,8 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
     {
         public override DataSet GetAll()
         {
-            // Chỉ lấy những người đang hoạt động (Status = 1)
             string sql = "SELECT * FROM Employees WHERE Status = 1";
-            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
+            return dal.ExecuteQueryDataSet(sql, CommandType.Text, null);
         }
 
         public override bool Add(Staff entity, ref string error)
@@ -58,23 +57,10 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         }
 
 
-        // Logic riêng của Employee
-        //private bool IsEmployeeIDExists(string id)
-        //{
-        //    string query = "SELECT COUNT(*) FROM Employees WHERE EmployeeID=@id";
-        //    return Convert.ToInt32(dal.ExecuteScalar(query,
-        //        new SqlParameter("@id", id))) > 0;
-        //}
-
-        //private void UpdateRelatedOrders(string empId)
-        //{
-        //    // Cập nhật các đơn hàng liên quan
-        //}
-
-        //public DataTable GetByPosition(string position)
-        //{
-        //    string query = "SELECT * FROM Employees WHERE Position=@pos";
-        //    return dal.ExecuteQuery(query, new SqlParameter("@pos", position));
-        //}
+        public DataSet StaffSearch(string employeeID, string name, string phone, string position)
+        {
+            // dal là đối tượng DataAccessLayer
+            return dal.SearchStaff(employeeID, name, phone, position);
+        }
     }
 }

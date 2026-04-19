@@ -215,5 +215,39 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
 
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtOrderDetailID.Clear();
+            txtOrderID.Clear();
+            txtProductID.Clear();
+            txtUnitprice.Clear();
+            txtQuantity.Clear();
+            txtTotalAmount.Clear();
+
+            txtOrderDetailID.Focus(); // Đặt con trỏ vào ô ID sau khi reset
+            LoadData(); // Tải lại dữ liệu để reset GridView
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string Orderid = txtOrderIDSearch.Text.Trim();
+            string OrderDetailid = txtOrderDetailIDSearch.Text.Trim();
+            string productid = txtProductIDSearch.Text.Trim();
+            string unitprice = txtUnitPriceSearch.Text.Trim();
+            string quantity = txtQuantitySearch.Text.Trim();
+            string totalamount = txtTotalAmountSearch.Text.Trim();
+
+            try
+            {
+                DataSet ds = bll.OrderDetailSearch(Orderid, OrderDetailid, productid, unitprice, quantity, totalamount);
+                dgvOrderDetails.DataSource = ds.Tables[0];
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message);
+            }
+
+        }
     }
 }

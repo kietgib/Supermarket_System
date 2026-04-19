@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +15,8 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
     {
         public override DataSet GetAll()
         {
-            // Lấy danh sách hóa đơn, có thể dùng JOIN để hiển thị tên khách/nhân viên cho đẹp
-            string sql = "SELECT * FROM Orders";
-            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
+            string sql = "SELECT * FROM Orders WHERE Status = 1";
+            return dal.ExecuteQueryDataSet(sql, CommandType.Text, null);
         }
 
         public override bool Add(Order entity, ref string error)
@@ -41,9 +41,21 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
 
         public override bool Delete(object id, ref string error)
         {
-            // Cẩn thận: Nếu xóa hóa đơn cha, bạn có thể cần xóa các hóa đơn chi tiết trước (Cascade Delete)
-            string sql = $"DELETE FROM Orders WHERE OrderID = '{id}'";
-            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+            string sql = "UPDATE Orders SET Status = 0 WHERE OrderID = @id";
+
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@id", id)
+            };
+
+            return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error, parameters);
         }
+        public DataSet OrderSearch(string orderID, string customerID, string orderDate)
+        {
+            return dal.SearchOrders(orderID, customerID, orderDate);
+        }
+
+
+
     }
 }

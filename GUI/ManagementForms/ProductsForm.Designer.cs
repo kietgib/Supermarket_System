@@ -61,6 +61,14 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtProductIDSearch = new System.Windows.Forms.TextBox();
+            this.txtPriceSearch = new System.Windows.Forms.TextBox();
+            this.txtStockSearch = new System.Windows.Forms.TextBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtCategoryIDSearch = new System.Windows.Forms.TextBox();
+            this.txtNameSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -68,6 +76,7 @@
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -340,6 +349,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.97198F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.996F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
@@ -423,6 +433,86 @@
             this.flowLayoutPanel2.TabIndex = 17;
             this.flowLayoutPanel2.WrapContents = false;
             // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.txtProductIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtCategoryIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtNameSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtPriceSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtStockSearch);
+            this.flowLayoutPanel4.Controls.Add(this.btnReset);
+            this.flowLayoutPanel4.Controls.Add(this.btnSearch);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1501, 316);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(797, 590);
+            this.flowLayoutPanel4.TabIndex = 34;
+            // 
+            // txtProductIDSearch
+            // 
+            this.txtProductIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductIDSearch.Location = new System.Drawing.Point(3, 3);
+            this.txtProductIDSearch.Name = "txtProductIDSearch";
+            this.txtProductIDSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtProductIDSearch.TabIndex = 31;
+            // 
+            // txtPriceSearch
+            // 
+            this.txtPriceSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPriceSearch.Location = new System.Drawing.Point(3, 99);
+            this.txtPriceSearch.Name = "txtPriceSearch";
+            this.txtPriceSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtPriceSearch.TabIndex = 30;
+            // 
+            // txtStockSearch
+            // 
+            this.txtStockSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtStockSearch.Location = new System.Drawing.Point(3, 131);
+            this.txtStockSearch.Name = "txtStockSearch";
+            this.txtStockSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtStockSearch.TabIndex = 25;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(626, 178);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(100, 73);
+            this.btnReset.TabIndex = 28;
+            this.btnReset.Text = "RESET";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(20, 321);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 73);
+            this.btnSearch.TabIndex = 29;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtCategoryIDSearch
+            // 
+            this.txtCategoryIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCategoryIDSearch.Location = new System.Drawing.Point(3, 35);
+            this.txtCategoryIDSearch.Name = "txtCategoryIDSearch";
+            this.txtCategoryIDSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtCategoryIDSearch.TabIndex = 32;
+            // 
+            // txtNameSearch
+            // 
+            this.txtNameSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNameSearch.Location = new System.Drawing.Point(3, 67);
+            this.txtNameSearch.Name = "txtNameSearch";
+            this.txtNameSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtNameSearch.TabIndex = 33;
+            // 
             // ProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -441,6 +531,8 @@
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -480,5 +572,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.TextBox txtProductIDSearch;
+        private System.Windows.Forms.TextBox txtPriceSearch;
+        private System.Windows.Forms.TextBox txtStockSearch;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtNameSearch;
+        private System.Windows.Forms.TextBox txtCategoryIDSearch;
     }
 }

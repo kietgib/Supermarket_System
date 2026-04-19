@@ -62,6 +62,13 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtPositionSearch = new System.Windows.Forms.TextBox();
+            this.txtPhoneSearch = new System.Windows.Forms.TextBox();
+            this.txtNameSearch = new System.Windows.Forms.TextBox();
+            this.txtEmployeeIDSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -72,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // employeesBindingSource1
@@ -118,6 +126,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -413,6 +422,77 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.txtEmployeeIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtNameSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtPhoneSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtPositionSearch);
+            this.flowLayoutPanel4.Controls.Add(this.btnReset);
+            this.flowLayoutPanel4.Controls.Add(this.btnSearch);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1476, 294);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(797, 590);
+            this.flowLayoutPanel4.TabIndex = 34;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(626, 146);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(100, 73);
+            this.btnReset.TabIndex = 28;
+            this.btnReset.Text = "RESET";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(20, 289);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 73);
+            this.btnSearch.TabIndex = 29;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtPositionSearch
+            // 
+            this.txtPositionSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPositionSearch.Location = new System.Drawing.Point(3, 99);
+            this.txtPositionSearch.Name = "txtPositionSearch";
+            this.txtPositionSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtPositionSearch.TabIndex = 32;
+            // 
+            // txtPhoneSearch
+            // 
+            this.txtPhoneSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhoneSearch.Location = new System.Drawing.Point(3, 67);
+            this.txtPhoneSearch.Name = "txtPhoneSearch";
+            this.txtPhoneSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtPhoneSearch.TabIndex = 33;
+            // 
+            // txtNameSearch
+            // 
+            this.txtNameSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNameSearch.Location = new System.Drawing.Point(3, 35);
+            this.txtNameSearch.Name = "txtNameSearch";
+            this.txtNameSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtNameSearch.TabIndex = 34;
+            // 
+            // txtEmployeeIDSearch
+            // 
+            this.txtEmployeeIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtEmployeeIDSearch.Location = new System.Drawing.Point(3, 3);
+            this.txtEmployeeIDSearch.Name = "txtEmployeeIDSearch";
+            this.txtEmployeeIDSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtEmployeeIDSearch.TabIndex = 35;
+            // 
             // StaffForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -434,6 +514,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaff)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -472,5 +554,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtNameSearch;
+        private System.Windows.Forms.TextBox txtPhoneSearch;
+        private System.Windows.Forms.TextBox txtPositionSearch;
+        private System.Windows.Forms.TextBox txtEmployeeIDSearch;
     }
 }

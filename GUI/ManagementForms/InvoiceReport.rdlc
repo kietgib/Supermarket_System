@@ -982,7 +982,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SupermarketDBDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project cuối kì\New folder\Supermarket_System\SupermarketDBDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>"D:\Windows Programming\SupermarketSystem\SupermarketDBDataSet.xsd"</rd:SchemaPath>
         <rd:TableName>OrderReport</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

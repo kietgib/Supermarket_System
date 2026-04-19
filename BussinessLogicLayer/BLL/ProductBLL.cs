@@ -42,9 +42,10 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
         }
         public override DataSet GetAll()
         {
-            string sql = "SELECT * FROM Products";
-            return dal.ExecuteQueryDataSet(sql, CommandType.Text);
+            string sql = "SELECT * FROM Products WHERE Status = 1";
+            return dal.ExecuteQueryDataSet(sql, CommandType.Text, null);
         }
+
         public override bool Update(Product entity, ref string error)
         {
             string sql = $"UPDATE Products SET CategoryID = '{entity.CategoryID}', Name = N'{entity.Name}', Price = N'{entity.Price}', Stock = N'{entity.Stock}', Status = {entity.Status} WHERE ProductID = '{entity.ProductID}'";
@@ -58,6 +59,12 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
             //};
 
             return dal.MyExecuteNonQuery(sql, CommandType.Text, ref error);
+        }
+
+
+        public DataSet ProductsSearch(string productID, string categoryID, string name, string price, string stock)
+        {
+            return dal.SearchProducts(productID, categoryID, name, price, stock);
         }
     }
 }

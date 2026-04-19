@@ -48,6 +48,7 @@
             this.txtUnitprice = new System.Windows.Forms.TextBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
@@ -56,14 +57,22 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtProductIDSearch = new System.Windows.Forms.TextBox();
+            this.txtUnitPriceSearch = new System.Windows.Forms.TextBox();
+            this.txtQuantitySearch = new System.Windows.Forms.TextBox();
+            this.txtTotalAmountSearch = new System.Windows.Forms.TextBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtOrderDetailIDSearch = new System.Windows.Forms.TextBox();
+            this.txtOrderIDSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -71,6 +80,7 @@
             this.flowLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvOrderDetails
@@ -176,6 +186,7 @@
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.dgvOrderDetails, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel4, 2, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -250,6 +261,14 @@
             this.txtTotalAmount.Name = "txtTotalAmount";
             this.txtTotalAmount.Size = new System.Drawing.Size(600, 26);
             this.txtTotalAmount.TabIndex = 9;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(3, 195);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(600, 26);
+            this.textBox1.TabIndex = 10;
             // 
             // label8
             // 
@@ -356,6 +375,18 @@
             this.label14.Text = "Total Amount";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 219);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 30);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Status";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.btnAdd);
@@ -440,25 +471,94 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Visible = false;
             // 
-            // label1
+            // flowLayoutPanel4
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label1.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 219);
-            this.label1.Margin = new System.Windows.Forms.Padding(3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 30);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Status";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.flowLayoutPanel4.Controls.Add(this.txtOrderIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtOrderDetailIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtProductIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtUnitPriceSearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtQuantitySearch);
+            this.flowLayoutPanel4.Controls.Add(this.txtTotalAmountSearch);
+            this.flowLayoutPanel4.Controls.Add(this.btnReset);
+            this.flowLayoutPanel4.Controls.Add(this.btnSearch);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(1503, 352);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(797, 590);
+            this.flowLayoutPanel4.TabIndex = 32;
             // 
-            // textBox1
+            // txtProductIDSearch
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(3, 195);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(600, 26);
-            this.textBox1.TabIndex = 10;
+            this.txtProductIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtProductIDSearch.Location = new System.Drawing.Point(3, 67);
+            this.txtProductIDSearch.Name = "txtProductIDSearch";
+            this.txtProductIDSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtProductIDSearch.TabIndex = 25;
+            // 
+            // txtUnitPriceSearch
+            // 
+            this.txtUnitPriceSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUnitPriceSearch.Location = new System.Drawing.Point(3, 99);
+            this.txtUnitPriceSearch.Name = "txtUnitPriceSearch";
+            this.txtUnitPriceSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtUnitPriceSearch.TabIndex = 24;
+            // 
+            // txtQuantitySearch
+            // 
+            this.txtQuantitySearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtQuantitySearch.Location = new System.Drawing.Point(3, 131);
+            this.txtQuantitySearch.Name = "txtQuantitySearch";
+            this.txtQuantitySearch.Size = new System.Drawing.Size(600, 26);
+            this.txtQuantitySearch.TabIndex = 26;
+            // 
+            // txtTotalAmountSearch
+            // 
+            this.txtTotalAmountSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotalAmountSearch.Location = new System.Drawing.Point(3, 163);
+            this.txtTotalAmountSearch.Name = "txtTotalAmountSearch";
+            this.txtTotalAmountSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtTotalAmountSearch.TabIndex = 27;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(626, 210);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(100, 73);
+            this.btnReset.TabIndex = 28;
+            this.btnReset.Text = "RESET";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSearch.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(20, 353);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(20, 50, 10, 20);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 73);
+            this.btnSearch.TabIndex = 29;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtOrderDetailIDSearch
+            // 
+            this.txtOrderDetailIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtOrderDetailIDSearch.Location = new System.Drawing.Point(3, 35);
+            this.txtOrderDetailIDSearch.Name = "txtOrderDetailIDSearch";
+            this.txtOrderDetailIDSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtOrderDetailIDSearch.TabIndex = 30;
+            // 
+            // txtOrderIDSearch
+            // 
+            this.txtOrderIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtOrderIDSearch.Location = new System.Drawing.Point(3, 3);
+            this.txtOrderIDSearch.Name = "txtOrderIDSearch";
+            this.txtOrderIDSearch.Size = new System.Drawing.Size(600, 26);
+            this.txtOrderIDSearch.TabIndex = 31;
             // 
             // OrderDetailsForm
             // 
@@ -478,6 +578,8 @@
             this.flowLayoutPanel3.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -519,5 +621,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.TextBox txtOrderIDSearch;
+        private System.Windows.Forms.TextBox txtOrderDetailIDSearch;
+        private System.Windows.Forms.TextBox txtProductIDSearch;
+        private System.Windows.Forms.TextBox txtUnitPriceSearch;
+        private System.Windows.Forms.TextBox txtQuantitySearch;
+        private System.Windows.Forms.TextBox txtTotalAmountSearch;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

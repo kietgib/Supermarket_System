@@ -46,36 +46,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Textbox Name="CustomerName">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!CustomerName.Value</Value>
-                                  <Style />
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>CustomerName</rd:DefaultName>
-                          <Top>1.28834in</Top>
-                          <Left>1.09444in</Left>
-                          <Height>0.25in</Height>
-                          <Width>1.27222in</Width>
-                          <ZIndex>1</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
                         <Textbox Name="Phone">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -95,7 +65,7 @@
                           <Left>3.73334in</Left>
                           <Height>0.25in</Height>
                           <Width>1.41666in</Width>
-                          <ZIndex>2</ZIndex>
+                          <ZIndex>1</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -125,7 +95,7 @@
                           <Left>1.09444in</Left>
                           <Height>0.25in</Height>
                           <Width>4.05556in</Width>
-                          <ZIndex>3</ZIndex>
+                          <ZIndex>2</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -157,7 +127,7 @@
                           <Left>2.65in</Left>
                           <Height>0.28611in</Height>
                           <Width>0.9in</Width>
-                          <ZIndex>4</ZIndex>
+                          <ZIndex>3</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -233,7 +203,7 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Textbox1">
+                                      <Textbox Name="Textbox15">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
@@ -254,7 +224,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Textbox1</rd:DefaultName>
+                                        <rd:DefaultName>Textbox15</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -270,7 +240,7 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Textbox5">
+                                      <Textbox Name="Textbox17">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
@@ -291,7 +261,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Textbox5</rd:DefaultName>
+                                        <rd:DefaultName>Textbox17</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -307,7 +277,7 @@
                                   </TablixCell>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Textbox8">
+                                      <Textbox Name="Textbox20">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
@@ -328,7 +298,7 @@
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Textbox8</rd:DefaultName>
+                                        <rd:DefaultName>Textbox20</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -630,7 +600,7 @@
                           <Left>0.15in</Left>
                           <Height>0.5in</Height>
                           <Width>6in</Width>
-                          <ZIndex>5</ZIndex>
+                          <ZIndex>4</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -658,7 +628,7 @@
                           <Left>5.15in</Left>
                           <Height>0.375in</Height>
                           <Width>1in</Width>
-                          <ZIndex>6</ZIndex>
+                          <ZIndex>5</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -701,7 +671,7 @@
                           <Left>0.15in</Left>
                           <Height>0.375in</Height>
                           <Width>1in</Width>
-                          <ZIndex>7</ZIndex>
+                          <ZIndex>6</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -716,7 +686,7 @@
                           <Top>2.11333in</Top>
                           <Height>0in</Height>
                           <Width>6.32833in</Width>
-                          <ZIndex>8</ZIndex>
+                          <ZIndex>7</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -727,7 +697,7 @@
                           <Top>0.78in</Top>
                           <Height>0in</Height>
                           <Width>6.32833in</Width>
-                          <ZIndex>9</ZIndex>
+                          <ZIndex>8</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -753,7 +723,7 @@
                           <Left>0.025in</Left>
                           <Height>0.25in</Height>
                           <Width>1in</Width>
-                          <ZIndex>10</ZIndex>
+                          <ZIndex>9</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -783,7 +753,7 @@
                           <Left>0.025in</Left>
                           <Height>0.25in</Height>
                           <Width>1in</Width>
-                          <ZIndex>11</ZIndex>
+                          <ZIndex>10</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -813,7 +783,7 @@
                           <Left>2.65in</Left>
                           <Height>0.25in</Height>
                           <Width>1in</Width>
-                          <ZIndex>12</ZIndex>
+                          <ZIndex>11</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -843,7 +813,7 @@
                           <Left>0.025in</Left>
                           <Height>0.25in</Height>
                           <Width>1in</Width>
-                          <ZIndex>13</ZIndex>
+                          <ZIndex>12</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -858,13 +828,43 @@
                           <Top>3.12167in</Top>
                           <Height>0in</Height>
                           <Width>6.32833in</Width>
-                          <ZIndex>14</ZIndex>
+                          <ZIndex>13</ZIndex>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
                           </Style>
                         </Line>
+                        <Textbox Name="CustomerName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=First(Fields!CustomerName.Value, "DataSet1")</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>CustomerName</rd:DefaultName>
+                          <Top>1.28833in</Top>
+                          <Left>1.09444in</Left>
+                          <Height>0.25in</Height>
+                          <Width>1.27222in</Width>
+                          <ZIndex>14</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
                       </ReportItems>
                       <KeepTogether>true</KeepTogether>
                       <Style>
@@ -896,6 +896,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
+        <PageBreak>
+          <BreakLocation>End</BreakLocation>
+        </PageBreak>
         <Left>0.17167in</Left>
         <Height>4in</Height>
         <Width>6.32833in</Width>
@@ -982,7 +985,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>SupermarketDBDataSet</rd:DataSetName>
-        <rd:SchemaPath>"D:\Windows Programming\SupermarketSystem\SupermarketDBDataSet.xsd"</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\maivi\Desktop\Lap trinh dai hoc\Window Programming\Project cuối kì\New folder\Supermarket_System\SupermarketDBDataSet.xsd</rd:SchemaPath>
         <rd:TableName>OrderReport</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

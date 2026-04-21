@@ -69,6 +69,11 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -377,14 +382,18 @@
             // 
             // flowLayoutPanel4
             // 
+            this.flowLayoutPanel4.Controls.Add(this.label8);
             this.flowLayoutPanel4.Controls.Add(this.txtProductIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label10);
             this.flowLayoutPanel4.Controls.Add(this.txtCategoryIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label11);
             this.flowLayoutPanel4.Controls.Add(this.txtNameSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label12);
             this.flowLayoutPanel4.Controls.Add(this.txtPriceSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label9);
             this.flowLayoutPanel4.Controls.Add(this.txtStockSearch);
-            this.flowLayoutPanel4.Controls.Add(this.btnReset);
             this.flowLayoutPanel4.Controls.Add(this.btnSearch);
-            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel4.Controls.Add(this.btnReset);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(1035, 262);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(10);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
@@ -394,53 +403,53 @@
             // txtProductIDSearch
             // 
             this.txtProductIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtProductIDSearch.Location = new System.Drawing.Point(3, 2);
+            this.txtProductIDSearch.Location = new System.Drawing.Point(187, 2);
             this.txtProductIDSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtProductIDSearch.Name = "txtProductIDSearch";
-            this.txtProductIDSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtProductIDSearch.Size = new System.Drawing.Size(427, 22);
             this.txtProductIDSearch.TabIndex = 31;
             // 
             // txtCategoryIDSearch
             // 
             this.txtCategoryIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCategoryIDSearch.Location = new System.Drawing.Point(3, 28);
+            this.txtCategoryIDSearch.Location = new System.Drawing.Point(187, 28);
             this.txtCategoryIDSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtCategoryIDSearch.Name = "txtCategoryIDSearch";
-            this.txtCategoryIDSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtCategoryIDSearch.Size = new System.Drawing.Size(427, 22);
             this.txtCategoryIDSearch.TabIndex = 32;
             // 
             // txtNameSearch
             // 
             this.txtNameSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameSearch.Location = new System.Drawing.Point(3, 54);
+            this.txtNameSearch.Location = new System.Drawing.Point(187, 54);
             this.txtNameSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNameSearch.Name = "txtNameSearch";
-            this.txtNameSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtNameSearch.Size = new System.Drawing.Size(427, 22);
             this.txtNameSearch.TabIndex = 33;
             // 
             // txtPriceSearch
             // 
             this.txtPriceSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPriceSearch.Location = new System.Drawing.Point(3, 80);
+            this.txtPriceSearch.Location = new System.Drawing.Point(187, 80);
             this.txtPriceSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPriceSearch.Name = "txtPriceSearch";
-            this.txtPriceSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtPriceSearch.Size = new System.Drawing.Size(427, 22);
             this.txtPriceSearch.TabIndex = 30;
             // 
             // txtStockSearch
             // 
             this.txtStockSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtStockSearch.Location = new System.Drawing.Point(3, 106);
+            this.txtStockSearch.Location = new System.Drawing.Point(187, 106);
             this.txtStockSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtStockSearch.Name = "txtStockSearch";
-            this.txtStockSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtStockSearch.Size = new System.Drawing.Size(427, 22);
             this.txtStockSearch.TabIndex = 25;
             // 
             // btnReset
             // 
             this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReset.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(18, 170);
+            this.btnReset.Location = new System.Drawing.Point(134, 170);
             this.btnReset.Margin = new System.Windows.Forms.Padding(18, 40, 9, 10);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(89, 58);
@@ -453,8 +462,8 @@
             // 
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(18, 246);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(18, 8, 9, 16);
+            this.btnSearch.Location = new System.Drawing.Point(18, 170);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(18, 40, 9, 16);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(89, 58);
             this.btnSearch.TabIndex = 29;
@@ -531,6 +540,66 @@
             this.flowLayoutPanel2.TabIndex = 17;
             this.flowLayoutPanel2.WrapContents = false;
             // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(3, 5);
+            this.label8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(178, 16);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "ProductID Search";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 31);
+            this.label10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(178, 16);
+            this.label10.TabIndex = 43;
+            this.label10.Text = "CategoryID Search";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 57);
+            this.label11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(178, 16);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Name Search";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 83);
+            this.label12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(178, 16);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "Price Search";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(3, 109);
+            this.label9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 16);
+            this.label9.TabIndex = 42;
+            this.label9.Text = "Stock Search";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // ProductsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -599,5 +668,10 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtNameSearch;
         private System.Windows.Forms.TextBox txtCategoryIDSearch;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label9;
     }
 }

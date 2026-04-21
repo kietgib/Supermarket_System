@@ -216,7 +216,14 @@ namespace SupermarketSystem.GUI.ManagementForms
 
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+
+        private void btnExport_Click_1(object sender, EventArgs e)
+        {
+            InvoiceReportForm form = new InvoiceReportForm();
+            form.Show();
+        }
+
+        private void btnReset_Click_1(object sender, EventArgs e)
         {
             txtOrderDetailID.Clear();
             txtOrderID.Clear();
@@ -228,7 +235,8 @@ namespace SupermarketSystem.GUI.ManagementForms
             txtOrderDetailID.Focus(); // Đặt con trỏ vào ô ID sau khi reset
             LoadData(); // Tải lại dữ liệu để reset GridView
         }
-        private void btnSearch_Click(object sender, EventArgs e)
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
         {
             string Orderid = txtOrderIDSearch.Text.Trim();
             string OrderDetailid = txtOrderDetailIDSearch.Text.Trim();
@@ -247,7 +255,6 @@ namespace SupermarketSystem.GUI.ManagementForms
             {
                 MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message);
             }
-
         }
     }
 }

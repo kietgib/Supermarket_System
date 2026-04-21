@@ -211,34 +211,7 @@ namespace SupermarketSystem.DataLayer
 
 
 
-        public DataSet SearchProducts(string productID, string categoryID, string name, string price, string stock)
-        {
-            string sql = "SELECT * FROM Products WHERE Status = 1";
-            List<SqlParameter> parameters = new List<SqlParameter>();
 
-            // Tìm kiếm chuỗi (LIKE)
-            if (!string.IsNullOrEmpty(productID))
-            {
-                sql += " AND ProductID LIKE @productID";
-                parameters.Add(new SqlParameter("@productID", "%" + productID + "%"));
-            }
-            if (!string.IsNullOrEmpty(categoryID))
-            {
-                sql += " AND CategoryID LIKE @categoryID";
-                parameters.Add(new SqlParameter("@categoryID", "%" + categoryID + "%"));
-            }
-            if (!string.IsNullOrEmpty(name))
-            {
-                sql += " AND Name LIKE @name";
-                parameters.Add(new SqlParameter("@name", "%" + name + "%"));
-            }
-
-            // Tìm kiếm số theo khoảng (Price và Stock)
-            sql += BuildNumberFilter("Price", price, parameters);
-            sql += BuildNumberFilter("StockQuantity", stock, parameters);
-
-            return ExecuteQueryDataSet(sql, CommandType.Text, parameters.ToArray());
-        }
 
         // Hàm phụ để xử lý dấu >, <, >=, <=
         private string BuildNumberFilter(string columnName, string input, List<SqlParameter> parameters)
@@ -261,6 +234,37 @@ namespace SupermarketSystem.DataLayer
                 return $" AND {columnName} {op} {paramName}";
             }
             return "";
+        }
+
+        public DataSet SearchProducts(string categoryID, string productID, string name, string price, string stock)
+        {
+            string sql = "SELECT * FROM Products WHERE Status = 1";
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            // Tìm kiếm chuỗi (LIKE)
+
+            if (!string.IsNullOrEmpty(categoryID))
+            {
+                sql += " AND CategoryID LIKE @categoryID";
+                parameters.Add(new SqlParameter("@categoryID", "%" + categoryID + "%"));
+            }
+            if (!string.IsNullOrEmpty(productID))
+            {
+                sql += " AND ProductID LIKE @productID";
+                parameters.Add(new SqlParameter("@productID", "%" + productID + "%"));
+            }
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                sql += " AND Name LIKE @name";
+                parameters.Add(new SqlParameter("@name", "%" + name + "%"));
+            }
+
+            // Tìm kiếm số theo khoảng (Price và Stock)
+            sql += BuildNumberFilter("Price", price, parameters);
+            sql += BuildNumberFilter("Stock", stock, parameters);
+
+            return ExecuteQueryDataSet(sql, CommandType.Text, parameters.ToArray());
         }
 
 

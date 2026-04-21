@@ -54,7 +54,8 @@ namespace SupermarketSystem.GUI.ManagementForms
                 }
             }    
         }
-        private void btnSearch_Click(object sender, EventArgs e)
+
+        private void btnSearch_Click_1(object sender, EventArgs e)
         {
             string orderID = txtOrderIDSearch.Text.Trim();
             string customerID = txtCustomerIDSearch.Text.Trim();
@@ -70,7 +71,7 @@ namespace SupermarketSystem.GUI.ManagementForms
             }
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        private void btnReset_Click_1(object sender, EventArgs e)
         {
             txtOrderIDSearch.Clear();
             txtCustomerIDSearch.Clear();

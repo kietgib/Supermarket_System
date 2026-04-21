@@ -79,9 +79,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1037, 460);
             this.Controls.Add(this.reportViewer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "InvoiceReportForm";
             this.Text = "))";
             this.Load += new System.EventHandler(this.InvoiceReportForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InvoiceReportForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderReportBindingSource)).EndInit();
             this.ResumeLayout(false);

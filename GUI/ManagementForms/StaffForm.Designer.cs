@@ -69,6 +69,10 @@
             this.txtPositionSearch = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.employeesBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supermarketDBDataSet)).BeginInit();
@@ -434,13 +438,16 @@
             // 
             // flowLayoutPanel4
             // 
+            this.flowLayoutPanel4.Controls.Add(this.label2);
             this.flowLayoutPanel4.Controls.Add(this.txtEmployeeIDSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label3);
             this.flowLayoutPanel4.Controls.Add(this.txtNameSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label5);
             this.flowLayoutPanel4.Controls.Add(this.txtPhoneSearch);
+            this.flowLayoutPanel4.Controls.Add(this.label4);
             this.flowLayoutPanel4.Controls.Add(this.txtPositionSearch);
-            this.flowLayoutPanel4.Controls.Add(this.btnReset);
             this.flowLayoutPanel4.Controls.Add(this.btnSearch);
-            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel4.Controls.Add(this.btnReset);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(1028, 237);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
@@ -450,44 +457,44 @@
             // txtEmployeeIDSearch
             // 
             this.txtEmployeeIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtEmployeeIDSearch.Location = new System.Drawing.Point(3, 2);
+            this.txtEmployeeIDSearch.Location = new System.Drawing.Point(187, 2);
             this.txtEmployeeIDSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmployeeIDSearch.Name = "txtEmployeeIDSearch";
-            this.txtEmployeeIDSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtEmployeeIDSearch.Size = new System.Drawing.Size(427, 22);
             this.txtEmployeeIDSearch.TabIndex = 35;
             // 
             // txtNameSearch
             // 
             this.txtNameSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNameSearch.Location = new System.Drawing.Point(3, 28);
+            this.txtNameSearch.Location = new System.Drawing.Point(187, 28);
             this.txtNameSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNameSearch.Name = "txtNameSearch";
-            this.txtNameSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtNameSearch.Size = new System.Drawing.Size(427, 22);
             this.txtNameSearch.TabIndex = 34;
             // 
             // txtPhoneSearch
             // 
             this.txtPhoneSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPhoneSearch.Location = new System.Drawing.Point(3, 54);
+            this.txtPhoneSearch.Location = new System.Drawing.Point(187, 54);
             this.txtPhoneSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPhoneSearch.Name = "txtPhoneSearch";
-            this.txtPhoneSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtPhoneSearch.Size = new System.Drawing.Size(427, 22);
             this.txtPhoneSearch.TabIndex = 33;
             // 
             // txtPositionSearch
             // 
             this.txtPositionSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPositionSearch.Location = new System.Drawing.Point(3, 80);
+            this.txtPositionSearch.Location = new System.Drawing.Point(187, 80);
             this.txtPositionSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPositionSearch.Name = "txtPositionSearch";
-            this.txtPositionSearch.Size = new System.Drawing.Size(534, 22);
+            this.txtPositionSearch.Size = new System.Drawing.Size(427, 22);
             this.txtPositionSearch.TabIndex = 32;
             // 
             // btnReset
             // 
             this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReset.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(18, 144);
+            this.btnReset.Location = new System.Drawing.Point(134, 144);
             this.btnReset.Margin = new System.Windows.Forms.Padding(18, 40, 9, 10);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(89, 58);
@@ -500,14 +507,62 @@
             // 
             this.btnSearch.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSearch.Font = new System.Drawing.Font("Cambria", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(18, 220);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(18, 8, 9, 16);
+            this.btnSearch.Location = new System.Drawing.Point(18, 144);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(18, 40, 9, 16);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(89, 58);
             this.btnSearch.TabIndex = 29;
             this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 5);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(178, 16);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "EmployeeID Search";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 31);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(178, 16);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Name Search";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 57);
+            this.label5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(178, 16);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "Phone Search";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Font = new System.Drawing.Font("Cambria", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 83);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(178, 16);
+            this.label4.TabIndex = 42;
+            this.label4.Text = "Position Search";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // StaffForm
             // 
@@ -578,5 +633,9 @@
         private System.Windows.Forms.TextBox txtPhoneSearch;
         private System.Windows.Forms.TextBox txtPositionSearch;
         private System.Windows.Forms.TextBox txtEmployeeIDSearch;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }

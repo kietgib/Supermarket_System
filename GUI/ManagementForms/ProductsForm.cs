@@ -188,7 +188,7 @@ namespace SupermarketSystem.GUI.ManagementForms
 
             try
             {
-                dataGridView1.DataSource = bll.ProductsSearch(categoryID, name, price, stock, productID).Tables[0];
+                dataGridView1.DataSource = bll.ProductsSearch(categoryID, productID, name, price, stock ).Tables[0];
             }
             catch (Exception ex)
                 {

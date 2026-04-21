@@ -5423,26 +5423,11 @@ SELECT ProductID, CategoryID, Name, Price, Stock, Status FROM Products WHERE (Pr
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT 
-    o.OrderID,
-    c.Name AS CustomerName,
-    c.Phone,
-    c.Address,
-    o.Status,
-
-    p.ProductID,
-    p.Name AS ProductName,
-    p.Price,
-    p.Stock,
-
-    od.UnitPrice,
-    od.TotalAmount
-
-FROM Orders o
-JOIN Customers c ON o.CustomerID = c.CustomerID
-JOIN OrderDetails od ON o.OrderID = od.OrderID
-JOIN Products p ON od.ProductID = p.ProductID
-";
+            this._commandCollection[0].CommandText = @"SELECT o.OrderID, c.Name AS CustomerName, c.Phone, c.Address, c.Status, p.ProductID, p.Name AS ProductName, p.Price, p.Stock, od.UnitPrice, od.TotalAmount
+FROM     Orders AS o INNER JOIN
+                  Customers AS c ON o.CustomerID = c.CustomerID INNER JOIN
+                  OrderDetails AS od ON o.OrderID = od.OrderID INNER JOIN
+                  Products AS p ON od.ProductID = p.ProductID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

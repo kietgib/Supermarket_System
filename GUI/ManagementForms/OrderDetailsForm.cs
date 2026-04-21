@@ -199,5 +199,44 @@ namespace SupermarketSystem.GUI.ManagementForms
             ClearInputs();
             SetState(false);
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string orderID = txtOrderIDSearch.Text.Trim();
+            string orderDetailID = txtOrderDetailIDSearch.Text.Trim();
+            string productID = txtProductIDSearch.Text.Trim();
+            string unitPrice = txtUnitPriceSearch.Text.Trim();
+            string quantity = txtQuantitySearch.Text.Trim();
+            string totalAmount = txtTotalAmountSearch.Text.Trim();
+
+            try
+            {
+                dgvOrderDetails.DataSource = bll.Search(orderID, orderDetailID, productID,
+                                                         unitPrice, quantity, totalAmount);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtOrderDetailID.Clear();
+            txtOrderID.Clear();
+            txtProductID.Clear();
+            txtUnitprice.Clear();
+            txtQuantity.Clear();
+            txtTotalAmount.Clear();
+
+            txtOrderDetailID.Focus(); // Đặt con trỏ vào ô ID sau khi reset
+            LoadData(); // Tải lại dữ liệu để reset GridView
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            InvoiceReport form = new InvoiceReport();
+            form.Show();
+        }
     }
 }

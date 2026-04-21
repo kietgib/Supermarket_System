@@ -99,5 +99,26 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                 return false;
             }
         }
+        // ================= SEARCH =================
+        public List<Order> Search(string orderID, string customerID, string orderDate)
+        {
+            using (var db = new SupermarketDBEntities1())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var query = db.Orders.AsQueryable();
+
+                if (!string.IsNullOrEmpty(orderID))
+                    query = query.Where(o => o.OrderID.Contains(orderID));
+
+                if (!string.IsNullOrEmpty(customerID))
+                    query = query.Where(o => o.CustomerID.Contains(customerID));
+
+                if (!string.IsNullOrEmpty(orderDate) && DateTime.TryParse(orderDate, out DateTime parsedDate))
+                    query = query.Where(o => o.OrderDate == parsedDate);
+
+                return query.ToList();
+            }
+        }
     }
 }

@@ -93,5 +93,29 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                 return false;
             }
         }
+        // ================= SEARCH =================
+        public List<Employee> Search(string employeeID, string name, string phone, string position)
+        {
+            using (var db = new SupermarketDBEntities1())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var query = db.Employees.Where(e => e.Status == 1);
+
+                if (!string.IsNullOrEmpty(employeeID))
+                    query = query.Where(e => e.EmployeeID.Contains(employeeID));
+
+                if (!string.IsNullOrEmpty(name))
+                    query = query.Where(e => e.Name.Contains(name));
+
+                if (!string.IsNullOrEmpty(phone))
+                    query = query.Where(e => e.Phone.Contains(phone));
+
+                if (!string.IsNullOrEmpty(position))
+                    query = query.Where(e => e.Position.Contains(position));
+
+                return query.ToList();
+            }
+        }
     }
 }

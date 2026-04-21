@@ -186,5 +186,35 @@ namespace SupermarketSystem.GUI.ManagementForms
                 Status = status
             };
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string categoryID = txtCategoryIDSearch.Text.Trim();
+            string name = txtNameSearch.Text.Trim();
+            string price = txtPriceSearch.Text.Trim();
+            string stock = txtStockSearch.Text.Trim();
+            string productID = txtProductIDSearch.Text.Trim();
+
+            try
+            {
+                dataGridView1.DataSource = bll.Search(categoryID, productID, name, price, stock);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtCategoryID.Clear();
+            txtName.Clear();
+            txtPrice.Clear();
+            txtProductID.Clear();
+            txtStatus.Clear();
+            txtStock.Clear();
+
+            LoadData();
+        }
     }
 }

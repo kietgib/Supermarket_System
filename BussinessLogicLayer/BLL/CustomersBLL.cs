@@ -87,5 +87,29 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                 return false;
             }
         }
+        // ================= SEARCH =================
+        public List<Customer> Search(string id, string name, string phone, string address)
+        {
+            using (var db = new SupermarketDBEntities1())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var query = db.Customers.Where(c => c.Status == 1);
+
+                if (!string.IsNullOrEmpty(id))
+                    query = query.Where(c => c.CustomerID.Contains(id));
+
+                if (!string.IsNullOrEmpty(name))
+                    query = query.Where(c => c.Name.Contains(name));
+
+                if (!string.IsNullOrEmpty(phone))
+                    query = query.Where(c => c.Phone.Contains(phone));
+
+                if (!string.IsNullOrEmpty(address))
+                    query = query.Where(c => c.Address.Contains(address));
+
+                return query.ToList();
+            }
+        }
     }
 }

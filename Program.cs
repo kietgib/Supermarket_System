@@ -18,7 +18,7 @@ namespace SupermarketSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InvoiceReport());
+            Application.Run(new Splash());
         }
     }
 }

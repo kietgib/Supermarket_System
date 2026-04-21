@@ -168,5 +168,32 @@ namespace SupermarketSystem.GUI.ManagementForms
         {
             SetState(false);
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string employeeID = txtEmployeeIDSearch.Text.Trim();
+            string name = txtNameSearch.Text.Trim();
+            string phone = txtPhoneSearch.Text.Trim();
+            string position = txtPositionSearch.Text.Trim();
+
+            try
+            {
+                dgvStaff.DataSource = bll.Search(employeeID, name, phone, position);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtEmployeeID.Clear();
+            txtName.Clear();
+            txtPhone.Clear();
+            txtPosition.Clear();
+
+            LoadData();
+        }
     }
 }

@@ -177,5 +177,32 @@ namespace SupermarketSystem.GUI.ManagementForms
                 MessageBox.Show("Lỗi đọc dòng: " + ex.Message);
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string id = txtCustomerIDSearch.Text.Trim();
+            string name = txtNameSearch.Text.Trim();
+            string phone = txtPhoneSearch.Text.Trim();
+            string address = txtAddressSearch.Text.Trim();
+
+            try
+            {
+                dgvCustomers.DataSource = bll.Search(id, name, phone, address);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtAddressSearch.Clear();
+            txtCustomerIDSearch.Clear();
+            txtNameSearch.Clear();
+            txtPhoneSearch.Clear();
+
+            LoadData();
+        }
     }
 }

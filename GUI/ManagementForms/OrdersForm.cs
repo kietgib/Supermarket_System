@@ -46,5 +46,31 @@ namespace SupermarketSystem.GUI.ManagementForms
                 }
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string orderID = txtOrderIDSearch.Text.Trim();
+            string customerID = txtCustomerIDSearch.Text.Trim();
+            string orderDate = txtOrderDateSearch.Text.Trim();
+
+            try
+            {
+                dataGridView1.DataSource = bll.Search(orderID, customerID, orderDate);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tìm kiếm: " + ex.Message);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtOrderIDSearch.Clear();
+            txtCustomerIDSearch.Clear();
+            txtOrderDateSearch.Clear();
+            txtOrderIDSearch.Focus(); // Đặt con trỏ vào ô ID sau khi reset
+
+            LoadData(); // Tải lại dữ liệu để reset GridView
+        }
     }
 }

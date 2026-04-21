@@ -126,5 +126,36 @@ namespace SupermarketSystem.BussinessLogicLayer.BLL
                 return false;
             }
         }
+        // ================= SEARCH =================
+        public List<OrderDetail> Search(string orderID, string orderDetailID, string productID,
+                                        string unitPrice, string quantity, string totalAmount)
+        {
+            using (var db = new SupermarketDBEntities1())
+            {
+                db.Configuration.LazyLoadingEnabled = false;
+
+                var query = db.OrderDetails.AsQueryable();
+
+                if (!string.IsNullOrEmpty(orderDetailID))
+                    query = query.Where(od => od.OrderDetailID.Contains(orderDetailID));
+
+                if (!string.IsNullOrEmpty(orderID))
+                    query = query.Where(od => od.OrderID.Contains(orderID));
+
+                if (!string.IsNullOrEmpty(productID))
+                    query = query.Where(od => od.ProductID.Contains(productID));
+
+                if (!string.IsNullOrEmpty(unitPrice) && decimal.TryParse(unitPrice, out decimal parsedPrice))
+                    query = query.Where(od => od.UnitPrice == parsedPrice);
+
+                if (!string.IsNullOrEmpty(quantity) && int.TryParse(quantity, out int parsedQty))
+                    query = query.Where(od => od.Quantity == parsedQty);
+
+                if (!string.IsNullOrEmpty(totalAmount) && decimal.TryParse(totalAmount, out decimal parsedTotal))
+                    query = query.Where(od => od.TotalAmount == parsedTotal);
+
+                return query.ToList();
+            }
+        }
     }
 }

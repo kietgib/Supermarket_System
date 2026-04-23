@@ -1,3 +1,4 @@
+# FinalTerm WindowProgramming
 # 🛒 Supermarket Management System (WinForms)
 
 Dự án quản lý siêu thị được xây dựng trên nền tảng **C# Windows Forms**, sử dụng kiến trúc **3 lớp (3-Layer Architecture)** để đảm bảo tính module hóa và dễ bảo trì.
